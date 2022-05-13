@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Chat PHP Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../images/favicon.ico"/>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/base.css">
+            <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../css/template.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
+                <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/js/all.min.js" integrity="sha256-0vuk8LXoyrmCjp1f0O300qo1M75ZQyhH9X3J6d+scmk=" crossorigin="anonymous"></script>
+        <script src="../js/search.js"></script>
+        <script defer src="../js/searchIndex.js"></script>
+    </head>
+<body>
+    <header class="phpdocumentor-header phpdocumentor-section">
+    <h1 class="phpdocumentor-title">Chat PHP Documentation</h1>
+    <nav class="phpdocumentor-topnav">
+    </nav>
+</header>
+
+    <main class="phpdocumentor">
+        <div class="phpdocumentor-section">
+            <aside class="four phpdocumentor-columns phpdocumentor-sidebar">
+    <section data-search-form class="phpdocumentor-search">
+        <h2 class="phpdocumentor-sidebar__category-header">Search</h2>
+        <label class="phpdocumentor-label">
+            <span class="visually-hidden">Search for</span>
+            <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
+        </label>
+    </section>
+
+    
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
+                    <h3 class="phpdocumentor-sidebar__root-namespace"><a href="../namespaces/default.html"><abbr title="\">Global</abbr></a></h3>
+                            <h4 class="phpdocumentor-sidebar__root-namespace"><a href="../namespaces/chat.html"><abbr title="\Chat">Chat</abbr></a></h4>
+                <ul class="phpdocumentor-list">
+                                            <li><a href="../namespaces/chat-http.html"><abbr title="\Chat\Http">Http</abbr></a></li>
+                                            <li><a href="../namespaces/chat-inject.html"><abbr title="\Chat\Inject">Inject</abbr></a></li>
+                                            <li><a href="../namespaces/chat-renderer.html"><abbr title="\Chat\Renderer">Renderer</abbr></a></li>
+                                            <li><a href="../namespaces/chat-scenario.html"><abbr title="\Chat\Scenario">Scenario</abbr></a></li>
+                                            <li><a href="../namespaces/chat-util.html"><abbr title="\Chat\Util">Util</abbr></a></li>
+                                    </ul>
+                        </section>
+
+    
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="../reports/deprecated.html">Deprecated</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="../reports/errors.html">Errors</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="../reports/markers.html">Markers</a></h3>
+    </section>
+
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="../indices/files.html">Files</a></h3>
+    </section>
+</aside>
+
+            <div class="eight phpdocumentor-columns phpdocumentor-content">
+                    <ul class="phpdocumentor-breadcrumbs">
+                        <li><a href="../namespaces/chat.html">Chat</a></li>
+                    <li><a href="../namespaces/chat-util.html">Util</a></li>
+            </ul>
+
+    <article class="phpdocumentor-element phpdocumentor-class">
+        <h2 class="phpdocumentor-content__title">
+            LazyServiceLocator
+                                                        </h2>
+        <aside class="phpdocumentor-element-found-in">
+            <abbr class="phpdocumentor-element-found-in__file" title="src/Util/LazyServiceLocator.php"><a href="../files/src-util-lazyservicelocator.html"><abbr title="src/Util/LazyServiceLocator.php">LazyServiceLocator.php</abbr></a></abbr>
+            :
+            <span class="phpdocumentor-element-found-in__line">9</span>
+        </aside>
+
+        <p class="phpdocumentor-class__summary">Implements an IoC-container that provides access to objects by aliases.</p>
+        <section class="phpdocumentor-class__description"></section>
+        
+
+        <h3>Table of Contents</h3>
+
+<dl class="phpdocumentor-table_of_contents">
+                    <dt><a href="../classes/Chat-Util-LazyServiceLocator.html#property_instances">$instances</a> : array</dt>
+            <dd>Contains shared instances of IoC-container.</dd>
+                <dt><a href="../classes/Chat-Util-LazyServiceLocator.html#property_aliases">$aliases</a> : array</dt>
+            <dd>Represents an registry of constructor-functions of IoC-container.</dd>
+                            <dt><a href="../classes/Chat-Util-LazyServiceLocator.html#method_make">make()</a> : mixed</dt>
+            <dd>Returns object (or value) that is associated with given alias.</dd>
+                <dt><a href="../classes/Chat-Util-LazyServiceLocator.html#method_existsInstance">existsInstance()</a> : bool</dt>
+            <dd>Checks if exists any evaluated instance for given alias.</dd>
+                <dt><a href="../classes/Chat-Util-LazyServiceLocator.html#method_bindInstance">bindInstance()</a> : mixed</dt>
+            <dd>Associates given object (or any value) with given alias.</dd>
+                <dt><a href="../classes/Chat-Util-LazyServiceLocator.html#method_bindLazy">bindLazy()</a> : mixed</dt>
+            <dd>Associates given alias with given constructor-function
+(function that will be used to create objects under this alias).</dd>
+                <dt><a href="../classes/Chat-Util-LazyServiceLocator.html#method_bindLazySingletons">bindLazySingletons()</a> : mixed</dt>
+            <dd>Performs shared binding for given mapping &#039;$alias =&gt; callable $init&#039;
+of constructor-functions (functions that will be used
+to create objects under specified alias).</dd>
+                <dt><a href="../classes/Chat-Util-LazyServiceLocator.html#method_erase">erase()</a> : mixed</dt>
+            <dd>Removes given alias and any instances associated with it from
+IoC-container.</dd>
+                </dl>
+
+
+        
+                    <section>
+                <h3 class="phpdocumentor-properties__header">Properties</h3>
+                                    <a id="property_instances"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--protected
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$instances</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Util/LazyServiceLocator.php"><a href="../files/src-util-lazyservicelocator.html"><abbr title="src/Util/LazyServiceLocator.php">LazyServiceLocator.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">18</span>
+    </aside>
+            <p class="phpdocumentor-summary">Contains shared instances of IoC-container.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+                <span class="phpdocumentor-signature__type">array</span>
+        <span class="phpdocumentor-signature__name">$instances</span>
+         = <span class="phpdocumentor-signature__default-value">[]</span>    </code>
+        <section class="phpdocumentor-description"><p>Instances that are bound directly (with no &quot;lazy&quot; evaluation)
+are considered as shared too.</p></section>
+        
+
+</article>
+                                    <a id="property_aliases"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--protected
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$aliases</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Util/LazyServiceLocator.php"><a href="../files/src-util-lazyservicelocator.html"><abbr title="src/Util/LazyServiceLocator.php">LazyServiceLocator.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">29</span>
+    </aside>
+            <p class="phpdocumentor-summary">Represents an registry of constructor-functions of IoC-container.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+                <span class="phpdocumentor-signature__type">array</span>
+        <span class="phpdocumentor-signature__name">$aliases</span>
+         = <span class="phpdocumentor-signature__default-value">[]</span>    </code>
+        <section class="phpdocumentor-description"><p>Constructor-function is a function that returns
+required object (or value).
+These functions is used to create required objects &quot;lazy&quot; (only when
+they are required).</p></section>
+        
+
+</article>
+                                                            </section>
+        
+                    <section>
+                <h3 class="phpdocumentor-methods__header">Methods</h3>
+                                    <a id="method_make"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">make()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Util/LazyServiceLocator.php"><a href="../files/src-util-lazyservicelocator.html"><abbr title="src/Util/LazyServiceLocator.php">LazyServiceLocator.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">42</span>
+    </aside>
+        <p class="phpdocumentor-summary">Returns object (or value) that is associated with given alias.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">make</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$alias</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">mixed</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$alias</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Alias that is associated with required object.</p></section></dd>
+                    </dl>
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading">Tags</h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                                                <section class="phpdocumentor-description"><p>If nothing is associated
+with given alias.</p></section>
+                </dd>
+                        </dl>
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+                    &mdash; <span class="phpdocumentor-description"><p>Associated object (or value).</p></span>
+            
+</article>
+                                    <a id="method_existsInstance"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">existsInstance()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Util/LazyServiceLocator.php"><a href="../files/src-util-lazyservicelocator.html"><abbr title="src/Util/LazyServiceLocator.php">LazyServiceLocator.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">69</span>
+    </aside>
+        <p class="phpdocumentor-summary">Checks if exists any evaluated instance for given alias.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">existsInstance</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$alias</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">bool</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$alias</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Alias to be checked.</p></section></dd>
+                    </dl>
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash; <span class="phpdocumentor-description"><p>Yes or no.</p></span>
+            
+</article>
+                                    <a id="method_bindInstance"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">bindInstance()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Util/LazyServiceLocator.php"><a href="../files/src-util-lazyservicelocator.html"><abbr title="src/Util/LazyServiceLocator.php">LazyServiceLocator.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">80</span>
+    </aside>
+        <p class="phpdocumentor-summary">Associates given object (or any value) with given alias.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">bindInstance</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$alias</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </span>
+                    <span class="phpdocumentor-signature__argument">
+            ,                 <span class="phpdocumentor-signature__argument__name">$instance</span> :
+                <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">mixed</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$alias</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Alias that should be associated.</p></section></dd>
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$instance</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Value that should be associated.</p></section></dd>
+                    </dl>
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+            
+</article>
+                                    <a id="method_bindLazy"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">bindLazy()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Util/LazyServiceLocator.php"><a href="../files/src-util-lazyservicelocator.html"><abbr title="src/Util/LazyServiceLocator.php">LazyServiceLocator.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">97</span>
+    </aside>
+        <p class="phpdocumentor-summary">Associates given alias with given constructor-function
+(function that will be used to create objects under this alias).</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">bindLazy</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$alias</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </span>
+                    <span class="phpdocumentor-signature__argument">
+            ,                 <span class="phpdocumentor-signature__argument__name">$init</span> :
+                <span class="phpdocumentor-signature__argument__return-type">callable</span>
+                            </span>
+                    <span class="phpdocumentor-signature__argument">
+            [,                 <span class="phpdocumentor-signature__argument__name">$shared</span> :
+                <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">false</span> ]            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">mixed</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$alias</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Alias to associate created objects with.</p></section></dd>
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$init</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">callable</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Function that constructs and returns required
+objects.</p></section></dd>
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$shared</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                     = <span class="phpdocumentor-signature__argument__default-value">false</span>                </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>If true then once created object will be reused
+every time it is requested
+instead of creating new objects.</p></section></dd>
+                    </dl>
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+            
+</article>
+                                    <a id="method_bindLazySingletons"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">bindLazySingletons()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Util/LazyServiceLocator.php"><a href="../files/src-util-lazyservicelocator.html"><abbr title="src/Util/LazyServiceLocator.php">LazyServiceLocator.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">112</span>
+    </aside>
+        <p class="phpdocumentor-summary">Performs shared binding for given mapping &#039;$alias =&gt; callable $init&#039;
+of constructor-functions (functions that will be used
+to create objects under specified alias).</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">bindLazySingletons</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$map</span> :
+                <span class="phpdocumentor-signature__argument__return-type">callable[]</span>
+                            </span>
+                    <span class="phpdocumentor-signature__argument">
+            [,                 <span class="phpdocumentor-signature__argument__name">$prefix</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span> ]            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">mixed</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$map</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">callable[]</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Mapping from alias to constructor-function.</p></section></dd>
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$prefix</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                     = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>                </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Prefix to be added to each passed alias.</p></section></dd>
+                    </dl>
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+            
+</article>
+                                    <a id="method_erase"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">erase()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Util/LazyServiceLocator.php"><a href="../files/src-util-lazyservicelocator.html"><abbr title="src/Util/LazyServiceLocator.php">LazyServiceLocator.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">125</span>
+    </aside>
+        <p class="phpdocumentor-summary">Removes given alias and any instances associated with it from
+IoC-container.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">erase</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$alias</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">mixed</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$alias</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Alias to be removed.</p></section></dd>
+                    </dl>
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+            
+</article>
+                                                            </section>
+            </article>
+                <div data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+
+    <h2>Search results</h2>
+    <ul class="phpdocumentor-search-results__entries">
+    </ul>
+</div>
+            </div>
+        </div>
+    </main>
+    <script>
+        cssVars({});
+    </script>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Chat PHP Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../images/favicon.ico"/>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/base.css">
+            <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../css/template.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
+                <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/js/all.min.js" integrity="sha256-0vuk8LXoyrmCjp1f0O300qo1M75ZQyhH9X3J6d+scmk=" crossorigin="anonymous"></script>
+        <script src="../js/search.js"></script>
+        <script defer src="../js/searchIndex.js"></script>
+    </head>
+<body>
+    <header class="phpdocumentor-header phpdocumentor-section">
+    <h1 class="phpdocumentor-title">Chat PHP Documentation</h1>
+    <nav class="phpdocumentor-topnav">
+    </nav>
+</header>
+
+    <main class="phpdocumentor">
+        <div class="phpdocumentor-section">
+            <aside class="four phpdocumentor-columns phpdocumentor-sidebar">
+    <section data-search-form class="phpdocumentor-search">
+        <h2 class="phpdocumentor-sidebar__category-header">Search</h2>
+        <label class="phpdocumentor-label">
+            <span class="visually-hidden">Search for</span>
+            <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
+        </label>
+    </section>
+
+    
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
+                    <h3 class="phpdocumentor-sidebar__root-namespace"><a href="../namespaces/default.html"><abbr title="\">Global</abbr></a></h3>
+                            <h4 class="phpdocumentor-sidebar__root-namespace"><a href="../namespaces/chat.html"><abbr title="\Chat">Chat</abbr></a></h4>
+                <ul class="phpdocumentor-list">
+                                            <li><a href="../namespaces/chat-http.html"><abbr title="\Chat\Http">Http</abbr></a></li>
+                                            <li><a href="../namespaces/chat-inject.html"><abbr title="\Chat\Inject">Inject</abbr></a></li>
+                                            <li><a href="../namespaces/chat-renderer.html"><abbr title="\Chat\Renderer">Renderer</abbr></a></li>
+                                            <li><a href="../namespaces/chat-scenario.html"><abbr title="\Chat\Scenario">Scenario</abbr></a></li>
+                                            <li><a href="../namespaces/chat-util.html"><abbr title="\Chat\Util">Util</abbr></a></li>
+                                    </ul>
+                        </section>
+
+    
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="../reports/deprecated.html">Deprecated</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="../reports/errors.html">Errors</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="../reports/markers.html">Markers</a></h3>
+    </section>
+
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="../indices/files.html">Files</a></h3>
+    </section>
+</aside>
+
+            <div class="eight phpdocumentor-columns phpdocumentor-content">
+                    <ul class="phpdocumentor-breadcrumbs">
+                        <li><a href="../namespaces/chat.html">Chat</a></li>
+                    <li><a href="../namespaces/chat-http.html">Http</a></li>
+            </ul>
+
+    <article class="phpdocumentor-element phpdocumentor-class">
+        <h2 class="phpdocumentor-content__title">
+            Params
+                                                        </h2>
+        <aside class="phpdocumentor-element-found-in">
+            <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Params.php"><a href="../files/src-http-params.html"><abbr title="src/Http/Params.php">Params.php</abbr></a></abbr>
+            :
+            <span class="phpdocumentor-element-found-in__line">9</span>
+        </aside>
+
+        <p class="phpdocumentor-class__summary">Represents a set for key-value pairs of parameters.</p>
+        <section class="phpdocumentor-class__description"></section>
+        
+
+        <h3>Table of Contents</h3>
+
+<dl class="phpdocumentor-table_of_contents">
+                    <dt><a href="../classes/Chat-Http-Params.html#property_params">$params</a> : array</dt>
+            <dd>Contains parameters represented by this set.</dd>
+                            <dt><a href="../classes/Chat-Http-Params.html#method___construct">__construct()</a> : mixed</dt>
+            <dd>Creates new parameters set from given array.</dd>
+                <dt><a href="../classes/Chat-Http-Params.html#method_getAll">getAll()</a> : array</dt>
+            <dd>Returns all parameters as key-value array.</dd>
+                <dt><a href="../classes/Chat-Http-Params.html#method_exists">exists()</a> : bool</dt>
+            <dd>Checks if specified parameter exists.</dd>
+                <dt><a href="../classes/Chat-Http-Params.html#method_String">String()</a> : string</dt>
+            <dd>Returns space-truncated string representation of required parameter.</dd>
+                <dt><a href="../classes/Chat-Http-Params.html#method_Int">Int()</a> : int</dt>
+            <dd>Returns integer representation of required parameter.</dd>
+                <dt><a href="../classes/Chat-Http-Params.html#method_Bool">Bool()</a> : bool</dt>
+            <dd>Returns boolean representation of required parameter.</dd>
+                <dt><a href="../classes/Chat-Http-Params.html#method_Arr">Arr()</a> : array</dt>
+            <dd>Returns array representation of required parameter.</dd>
+                </dl>
+
+
+        
+                    <section>
+                <h3 class="phpdocumentor-properties__header">Properties</h3>
+                                    <a id="property_params"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--protected
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$params</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Params.php"><a href="../files/src-http-params.html"><abbr title="src/Http/Params.php">Params.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">16</span>
+    </aside>
+            <p class="phpdocumentor-summary">Contains parameters represented by this set.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+                <span class="phpdocumentor-signature__type">array</span>
+        <span class="phpdocumentor-signature__name">$params</span>
+            </code>
+        
+
+</article>
+                                                            </section>
+        
+                    <section>
+                <h3 class="phpdocumentor-methods__header">Methods</h3>
+                                    <a id="method___construct"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">__construct()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Params.php"><a href="../files/src-http-params.html"><abbr title="src/Http/Params.php">Params.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">24</span>
+    </aside>
+        <p class="phpdocumentor-summary">Creates new parameters set from given array.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">__construct</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$params</span> :
+                <span class="phpdocumentor-signature__argument__return-type">array</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">mixed</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$params</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">array</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Array of parameters to create set of.</p></section></dd>
+                    </dl>
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+            
+</article>
+                                    <a id="method_getAll"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">getAll()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Params.php"><a href="../files/src-http-params.html"><abbr title="src/Http/Params.php">Params.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">34</span>
+    </aside>
+        <p class="phpdocumentor-summary">Returns all parameters as key-value array.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">getAll</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">array</span>
+    </code>
+
+    
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array</span>
+            
+</article>
+                                    <a id="method_exists"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">exists()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Params.php"><a href="../files/src-http-params.html"><abbr title="src/Http/Params.php">Params.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">46</span>
+    </aside>
+        <p class="phpdocumentor-summary">Checks if specified parameter exists.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">exists</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$key</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string|int</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">bool</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$key</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Name of parameter.</p></section></dd>
+                    </dl>
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash; <span class="phpdocumentor-description"><p>Yes or no.</p></span>
+            
+</article>
+                                    <a id="method_String"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">String()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Params.php"><a href="../files/src-http-params.html"><abbr title="src/Http/Params.php">Params.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">58</span>
+    </aside>
+        <p class="phpdocumentor-summary">Returns space-truncated string representation of required parameter.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">String</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$key</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string|int</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">string</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$key</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Name of parameter.</p></section></dd>
+                    </dl>
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash; <span class="phpdocumentor-description"><p>Space-truncated string representation of parameter.</p></span>
+            
+</article>
+                                    <a id="method_Int"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">Int()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Params.php"><a href="../files/src-http-params.html"><abbr title="src/Http/Params.php">Params.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">70</span>
+    </aside>
+        <p class="phpdocumentor-summary">Returns integer representation of required parameter.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">Int</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$key</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string|int</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">int</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$key</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Name of parameter.</p></section></dd>
+                    </dl>
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash; <span class="phpdocumentor-description"><p>Integer representation of parameter.</p></span>
+            
+</article>
+                                    <a id="method_Bool"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">Bool()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Params.php"><a href="../files/src-http-params.html"><abbr title="src/Http/Params.php">Params.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">82</span>
+    </aside>
+        <p class="phpdocumentor-summary">Returns boolean representation of required parameter.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">Bool</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$key</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string|int</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">bool</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$key</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Name of parameter.</p></section></dd>
+                    </dl>
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash; <span class="phpdocumentor-description"><p>Boolean representation of parameter.</p></span>
+            
+</article>
+                                    <a id="method_Arr"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">Arr()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Params.php"><a href="../files/src-http-params.html"><abbr title="src/Http/Params.php">Params.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">94</span>
+    </aside>
+        <p class="phpdocumentor-summary">Returns array representation of required parameter.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">Arr</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$key</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string|int</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">array</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$key</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Name of parameter.</p></section></dd>
+                    </dl>
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array</span>
+                    &mdash; <span class="phpdocumentor-description"><p>Array representation of parameter.</p></span>
+            
+</article>
+                                                            </section>
+            </article>
+                <div data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+
+    <h2>Search results</h2>
+    <ul class="phpdocumentor-search-results__entries">
+    </ul>
+</div>
+            </div>
+        </div>
+    </main>
+    <script>
+        cssVars({});
+    </script>
+</body>
+</html>

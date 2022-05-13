@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Chat PHP Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../images/favicon.ico"/>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/base.css">
+            <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../css/template.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
+                <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/js/all.min.js" integrity="sha256-0vuk8LXoyrmCjp1f0O300qo1M75ZQyhH9X3J6d+scmk=" crossorigin="anonymous"></script>
+        <script src="../js/search.js"></script>
+        <script defer src="../js/searchIndex.js"></script>
+    </head>
+<body>
+    <header class="phpdocumentor-header phpdocumentor-section">
+    <h1 class="phpdocumentor-title">Chat PHP Documentation</h1>
+    <nav class="phpdocumentor-topnav">
+    </nav>
+</header>
+
+    <main class="phpdocumentor">
+        <div class="phpdocumentor-section">
+            <aside class="four phpdocumentor-columns phpdocumentor-sidebar">
+    <section data-search-form class="phpdocumentor-search">
+        <h2 class="phpdocumentor-sidebar__category-header">Search</h2>
+        <label class="phpdocumentor-label">
+            <span class="visually-hidden">Search for</span>
+            <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
+        </label>
+    </section>
+
+    
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
+                    <h3 class="phpdocumentor-sidebar__root-namespace"><a href="../namespaces/default.html"><abbr title="\">Global</abbr></a></h3>
+                            <h4 class="phpdocumentor-sidebar__root-namespace"><a href="../namespaces/chat.html"><abbr title="\Chat">Chat</abbr></a></h4>
+                <ul class="phpdocumentor-list">
+                                            <li><a href="../namespaces/chat-http.html"><abbr title="\Chat\Http">Http</abbr></a></li>
+                                            <li><a href="../namespaces/chat-inject.html"><abbr title="\Chat\Inject">Inject</abbr></a></li>
+                                            <li><a href="../namespaces/chat-renderer.html"><abbr title="\Chat\Renderer">Renderer</abbr></a></li>
+                                            <li><a href="../namespaces/chat-scenario.html"><abbr title="\Chat\Scenario">Scenario</abbr></a></li>
+                                            <li><a href="../namespaces/chat-util.html"><abbr title="\Chat\Util">Util</abbr></a></li>
+                                    </ul>
+                        </section>
+
+    
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="../reports/deprecated.html">Deprecated</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="../reports/errors.html">Errors</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="../reports/markers.html">Markers</a></h3>
+    </section>
+
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="../indices/files.html">Files</a></h3>
+    </section>
+</aside>
+
+            <div class="eight phpdocumentor-columns phpdocumentor-content">
+                    <ul class="phpdocumentor-breadcrumbs">
+                        <li><a href="../namespaces/chat.html">Chat</a></li>
+                    <li><a href="../namespaces/chat-http.html">Http</a></li>
+            </ul>
+
+    <article class="phpdocumentor-element phpdocumentor-class">
+        <h2 class="phpdocumentor-content__title">
+            Request
+                                                        </h2>
+        <aside class="phpdocumentor-element-found-in">
+            <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Request.php"><a href="../files/src-http-request.html"><abbr title="src/Http/Request.php">Request.php</abbr></a></abbr>
+            :
+            <span class="phpdocumentor-element-found-in__line">11</span>
+        </aside>
+
+        <p class="phpdocumentor-class__summary">HTTP request to application.</p>
+        <section class="phpdocumentor-class__description"></section>
+        
+
+        <h3>Table of Contents</h3>
+
+<dl class="phpdocumentor-table_of_contents">
+                    <dt><a href="../classes/Chat-Http-Request.html#property_host">$host</a> : string</dt>
+            <dd>Host that HTTP request was made to.</dd>
+                <dt><a href="../classes/Chat-Http-Request.html#property_page">$page</a> : string</dt>
+            <dd>Alias of page that was requested.</dd>
+                <dt><a href="../classes/Chat-Http-Request.html#property_GET">$GET</a> : <a href="../classes/Chat-Http-Params.html"><abbr title="\Chat\Http\Params">Params</abbr></a></dt>
+            <dd>Contains GET parameters of HTTP request.</dd>
+                <dt><a href="../classes/Chat-Http-Request.html#property_POST">$POST</a> : <a href="../classes/Chat-Http-Params.html"><abbr title="\Chat\Http\Params">Params</abbr></a></dt>
+            <dd>Contains POST parameters of HTTP request.</dd>
+                            <dt><a href="../classes/Chat-Http-Request.html#method___construct">__construct()</a> : mixed</dt>
+            <dd>Creates new HTTP request with initialised empty parameters.</dd>
+                <dt><a href="../classes/Chat-Http-Request.html#method_parse">parse()</a> : $this</dt>
+            <dd>Parses given HTTP request parameters.</dd>
+                <dt><a href="../classes/Chat-Http-Request.html#method_parseSuperGlobal">parseSuperGlobal()</a> : $this</dt>
+            <dd>Parses HTTP request parameters from PHP super global variables.</dd>
+                <dt><a href="../classes/Chat-Http-Request.html#method_parseUriPath">parseUriPath()</a> : string</dt>
+            <dd>Performs parsing of URI path from full URI string.</dd>
+                </dl>
+
+
+        
+                    <section>
+                <h3 class="phpdocumentor-properties__header">Properties</h3>
+                                    <a id="property_host"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$host</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Request.php"><a href="../files/src-http-request.html"><abbr title="src/Http/Request.php">Request.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">18</span>
+    </aside>
+            <p class="phpdocumentor-summary">Host that HTTP request was made to.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__name">$host</span>
+         = <span class="phpdocumentor-signature__default-value">&#039;&#039;</span>    </code>
+        
+
+</article>
+                                    <a id="property_page"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$page</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Request.php"><a href="../files/src-http-request.html"><abbr title="src/Http/Request.php">Request.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">25</span>
+    </aside>
+            <p class="phpdocumentor-summary">Alias of page that was requested.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__name">$page</span>
+         = <span class="phpdocumentor-signature__default-value">&#039;&#039;</span>    </code>
+        
+
+</article>
+                                    <a id="property_GET"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$GET</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Request.php"><a href="../files/src-http-request.html"><abbr title="src/Http/Request.php">Request.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">32</span>
+    </aside>
+            <p class="phpdocumentor-summary">Contains GET parameters of HTTP request.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type"><a href="../classes/Chat-Http-Params.html"><abbr title="\Chat\Http\Params">Params</abbr></a></span>
+        <span class="phpdocumentor-signature__name">$GET</span>
+            </code>
+        
+
+</article>
+                                    <a id="property_POST"></a>
+<article
+        class="
+            phpdocumentor-property
+            phpdocumentor-property--public
+                                "
+>
+    <h4 class="phpdocumentor-property__name">$POST</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Request.php"><a href="../files/src-http-request.html"><abbr title="src/Http/Request.php">Request.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">39</span>
+    </aside>
+            <p class="phpdocumentor-summary">Contains POST parameters of HTTP request.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__type"><a href="../classes/Chat-Http-Params.html"><abbr title="\Chat\Http\Params">Params</abbr></a></span>
+        <span class="phpdocumentor-signature__name">$POST</span>
+            </code>
+        
+
+</article>
+                                                            </section>
+        
+                    <section>
+                <h3 class="phpdocumentor-methods__header">Methods</h3>
+                                    <a id="method___construct"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">__construct()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Request.php"><a href="../files/src-http-request.html"><abbr title="src/Http/Request.php">Request.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">45</span>
+    </aside>
+        <p class="phpdocumentor-summary">Creates new HTTP request with initialised empty parameters.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">__construct</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">mixed</span>
+    </code>
+
+    
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+            
+</article>
+                                    <a id="method_parse"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">parse()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Request.php"><a href="../files/src-http-request.html"><abbr title="src/Http/Request.php">Request.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">61</span>
+    </aside>
+        <p class="phpdocumentor-summary">Parses given HTTP request parameters.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">parse</span>(
+                    <span class="phpdocumentor-signature__argument">
+            [                <span class="phpdocumentor-signature__argument__name">$host</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span> ]            </span>
+                    <span class="phpdocumentor-signature__argument">
+            [,                 <span class="phpdocumentor-signature__argument__name">$uri</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span> ]            </span>
+                    <span class="phpdocumentor-signature__argument">
+            [,                 <span class="phpdocumentor-signature__argument__name">$query</span> :
+                <span class="phpdocumentor-signature__argument__return-type">array</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span> ]            </span>
+                    <span class="phpdocumentor-signature__argument">
+            [,                 <span class="phpdocumentor-signature__argument__name">$request</span> :
+                <span class="phpdocumentor-signature__argument__return-type">array</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span> ]            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">$this</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$host</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                     = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>                </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Host that HTTP request was made to.</p></section></dd>
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$uri</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                     = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>                </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Full URI of HTTP request or just URI path.</p></section></dd>
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$query</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">array</span>
+                     = <span class="phpdocumentor-signature__argument__default-value">[]</span>                </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Array of GET request parameters.</p></section></dd>
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$request</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">array</span>
+                     = <span class="phpdocumentor-signature__argument__default-value">[]</span>                </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Array of POST request parameters.</p></section></dd>
+                    </dl>
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">$this</span>
+                    &mdash; <span class="phpdocumentor-description"><p>Itself for chained calls.</p></span>
+            
+</article>
+                                    <a id="method_parseSuperGlobal"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">parseSuperGlobal()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Request.php"><a href="../files/src-http-request.html"><abbr title="src/Http/Request.php">Request.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">77</span>
+    </aside>
+        <p class="phpdocumentor-summary">Parses HTTP request parameters from PHP super global variables.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">parseSuperGlobal</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">$this</span>
+    </code>
+
+    
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">$this</span>
+                    &mdash; <span class="phpdocumentor-description"><p>Itself for chained calls.</p></span>
+            
+</article>
+                                    <a id="method_parseUriPath"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                    phpdocumentor-element--static                    "
+>
+    <h4 class="phpdocumentor-method__name">parseUriPath()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Request.php"><a href="../files/src-http-request.html"><abbr title="src/Http/Request.php">Request.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">91</span>
+    </aside>
+        <p class="phpdocumentor-summary">Performs parsing of URI path from full URI string.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                        <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">parseUriPath</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$uri</span> :
+                <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">string</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$uri</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>Full URI string of HTTP request.</p></section></dd>
+                    </dl>
+    
+    
+
+
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash; <span class="phpdocumentor-description"><p>URI path of HTTP request.</p></span>
+            
+</article>
+                                                            </section>
+            </article>
+                <div data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+
+    <h2>Search results</h2>
+    <ul class="phpdocumentor-search-results__entries">
+    </ul>
+</div>
+            </div>
+        </div>
+    </main>
+    <script>
+        cssVars({});
+    </script>
+</body>
+</html>
