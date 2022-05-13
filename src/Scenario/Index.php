@@ -25,7 +25,8 @@ class Index implements Scenario
     public function run(Request $req): array
     {
         return ['toRender' => [
-            'data' => 'Hello Chat !!!',
+            'users' => 'Users in chat',
+            'messages' => 'All messages'
         ]];
     }
 }
