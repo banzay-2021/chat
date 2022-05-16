@@ -1,0 +1,13 @@
+{% extends 'layout/default.twig' %}
+
+{% block title %}Registration{% endblock %}
+{% block content %}
+  <div class="container my-5">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <h1 class="text-center">Registration</h1>
+        {% include 'parts/registration/form_registration.twig' %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

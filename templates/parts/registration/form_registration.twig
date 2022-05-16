@@ -1,0 +1,25 @@
+<h3>{# user #}</h3>
+
+<form action="/registration" method="get" class="my-5">
+  <div class="mb-3">
+    <label for="inputName" class="form-label">Your name</label>
+    <input name="name" type="test" class="form-control" id="inputName"
+           aria-describedby="nameHelp" maxlength="50">
+    <div id="nameHelp" class="form-text">We will never share your information
+      with anyone else.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="inputLogin" class="form-label">Login</label>
+    <input name="login" type="text" class="form-control" id="inputLogin"
+           aria-describedby="loginHelp" maxlength="50">
+    <div id="loginHelp" class="form-text">Login must be one word and contain
+      only letters and/or numbers
+    </div>
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="check1">
+    <label class="form-check-label" for="check1">To remember me</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

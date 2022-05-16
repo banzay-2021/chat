@@ -1,31 +1,17 @@
 {% extends 'layout/default.twig' %}
 
+{% block title %}Home{% endblock %}
 {% block content %}
   <div class="container my-5">
-    <h1 class="text-center mb-5">My chat</h1>
     <div class="row">
-      <div class="col-md-5">
-        {{ users }}
-      </div>
-      <div class="col-md-7">
-        <div class="message-body col-auto">
-          {{ messages }}
-        </div>
-        <div class="form-body col-auto">
-          <form action="">
-            <div class="col-auto my-3">
-              <textarea
-                class="form-control"
-                name="message"
-                id=""
-                cols="30"
-                rows="5"></textarea>
-            </div>
-            <div class="col-auto my-3">
-              <button type="submit" class="btn btn-primary">Send</button>
-            </div>
-          </form>
-        </div>
+      <div class="col-md-8 mx-auto text-center">
+        <h1 class="">Home page</h1>
+        <a href="/chat" class="btn btn-secondary">
+          Go to chat
+        </a>
+        <a href="/registration" class="btn btn-primary ms-1">
+          Registration
+        </a>
       </div>
     </div>
   </div>

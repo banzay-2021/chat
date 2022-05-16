@@ -6,21 +6,19 @@ use \Chat\Http\Request;
 use \Chat\Inject;
 use \Chat\Scenario;
 
-
 /**
- * Implements scenarios of index page for authorized visitors.
+ * Implements scenarios of chat page for authorized visitors.
  */
-class Index implements Scenario
+class Chat implements Scenario
 {
     use Inject\HtmlRenderer;
-
 
     /**
      * Runs scenario of index page.
      *
-     * @param Request $req HTTP request to index page.
+     * @param Request $req HTTP request to chat page.
      *
-     * @return array    Result of index page scenario.
+     * @return array    Result of chat page scenario.
      */
     public function run(Request $req): array
     {

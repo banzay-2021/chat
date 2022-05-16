@@ -16,6 +16,8 @@ class Router
      */
     protected $pages = [
         'index' => [],
+        'registration' => [],
+        'chat' => [],
         '404' => [],
         'api' => []
     ];
