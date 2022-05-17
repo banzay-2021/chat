@@ -3,6 +3,7 @@
 <form action="/registration" method="get" class="my-5">
   <div class="mb-3">
     <label for="inputName" class="form-label">Your name</label>
+    <span id="mistake-name" class="mistake"></span>
     <input name="name" type="test" class="form-control" id="inputName"
            aria-describedby="nameHelp" maxlength="50">
     <div id="nameHelp" class="form-text">We will never share your information
@@ -11,6 +12,7 @@
   </div>
   <div class="mb-3">
     <label for="inputLogin" class="form-label">Login</label>
+    <span id="mistake-login" class="mistake"></span>
     <input name="login" type="text" class="form-control" id="inputLogin"
            aria-describedby="loginHelp" maxlength="50">
     <div id="loginHelp" class="form-text">Login must be one word and contain
@@ -19,7 +21,73 @@
   </div>
   <div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" id="check1">
-    <label class="form-check-label" for="check1">To remember me</label>
+    <label class="form-check-label" for="check1">Remember me</label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button id="submit" type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+
+{# Temporary js #}
+<script type="text/javascript">
+  $(window).on('load', function () {
+    let mistake = 'This field cannot be empty';
+    $('#submit').on('click', function (e) {
+      e.preventDefault();
+
+      let name = $('#inputName').val();
+      if (!name) {
+        mistakeAction('inputName', 'mistake-name', mistake);
+        return false;
+      }
+
+      let login = $('#inputLogin').val();
+      if (!login) {
+        mistakeAction('inputLogin', 'mistake-login', mistake);
+        return false;
+      }
+
+      let loginTestA = /[^a-zA-Z]/g.test(login);
+      mistake = 'Illegal characters';
+      if (loginTestA) {
+        mistakeAction('inputLogin', 'mistake-login', mistake);
+      }
+
+      let check = $('#check1').prop('checked');
+
+      // TODO: проверить есть ли такой логин
+      // если есть - вывести предупреждение и поставить фокус на логин
+      // если нет - очисть форму и перейти/предложить перейти к чату
+      //clearForm();
+
+    });
+
+    function clearForm() {
+      $('#inputName, #inputLogin').val('');
+      $('#mistake-login, #mistake-login').html('').removeClass('show');
+      $('#check1').prop('checked', false);
+    }
+
+    function mistakeAction(toFocus, toMistake, mistake) {
+      $('#' + toFocus).focus();
+      $('#' + toMistake).text(mistake).fadeIn(1200).delay(5000).fadeOut(1200);
+    }
+  });
+</script>
+
+{# Temporary css #}
+<style>
+  .mistake {
+    display: none;
+    margin-left: 14px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #ff0000ab;
+    padding: 0 8px;
+    opacity: 1;
+    transition: all .8s;
+  }
+
+  .mistake.show {
+    opacity: 1;
+  }
+</style>

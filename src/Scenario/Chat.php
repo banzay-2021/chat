@@ -14,7 +14,7 @@ class Chat implements Scenario
     use Inject\HtmlRenderer;
 
     /**
-     * Runs scenario of index page.
+     * Runs scenario of chat page.
      *
      * @param Request $req HTTP request to chat page.
      *
@@ -22,11 +22,21 @@ class Chat implements Scenario
      */
     public function run(Request $req): array
     {
+        //echo 'Chat => run<br>';
         // TODO: Sending temporary data to the template
         return ['toRender' => [
             'reg' => $req->page,
             'user' => 1,
-            'friends' => ['Vasia', 'Petia'],
+            'friends' => [
+                [
+                    'id' => 1,
+                    'name' => 'Vasia'
+                ],
+                [
+                    'id' => 2,
+                    'name' => 'Petia'
+                ]
+            ],
             'messages' => [
                 [
                     'message' => 'Message from 1 to 2',

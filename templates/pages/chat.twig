@@ -5,21 +5,68 @@
   <div class="container my-5">
     <div class="row">
       <div class="col-md-8 mx-auto">
-        <h1 class="text-center">My chat</h1>
+
+        <h1 class="text-center mb-5">My chat</h1>
+
         <div class="row">
-          <div class="col-md-4 g-5 rounded-3 my-friends-body">
-            {% include 'parts/chat/my_friends.twig' %}
-          </div>
-          <div class="col-md-8 g-5">
-            <div class="message-body col-auto rounded-3">
-              {% include 'parts/chat/messages.twig' %}
-            </div>
-            <div class="form-body col-auto">
-              {% include 'parts/chat/form_send_message.twig' %}
+          <div class="col-md-4 my-2">
+            <div class="rounded-3 p-3 my-friends-body bx-shadow-in">
+              {% include 'parts/chat/my_friends.twig' %}
             </div>
           </div>
+
+          <div class="col-md-8 my-2">
+
+            <div class="row">
+              <div class="col-md-12">
+                {% include 'parts/chat/messages.twig' %}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 mt-4">
+                <div class="rounded-3 bx-shadow-in p-3">
+                  {% include 'parts/chat/form_send_message.twig' %}
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
+
       </div>
     </div>
   </div>
+
+  {# Temporary js #}
+  <script type="text/javascript">
+
+    let user = {{ user }};
+    let hWindow = $(window).height();
+    let hMessageBox = hWindow - (hWindow / 1.5);
+
+    $(window).on('load', function () {
+      $.cookie('user', user, { expires: 7 });
+      $('#messages-body').height(hMessageBox);
+
+      $('.person').on('click', function (e){
+        e.preventDefault();
+        let friend = $(this).attr('data-user');
+        $.cookie('friend', friend, { expires: 7 });
+        $('#messages-box').html('');
+
+        // TODO: get new messages and insert in #messages-box;
+      });
+    });
+  </script>
+
+  {# Temporary css #}
+  <style>
+    #messages-body {
+      overflow-y: visible;
+      overflow-x: hidden;
+      position: relative;
+    }
+  </style>
 {% endblock %}

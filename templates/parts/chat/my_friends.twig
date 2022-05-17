@@ -1,8 +1,14 @@
-<div class="py-3">
+<div class="">
   <h3>My friend</h3>
-  <div class="ps-2">
+  <div class="">
     {% for friend in friends %}
-      <div>{{ friend }}</div>
+      <a
+        href="/chat?user={{ user }}&from={{ friend.id }}"
+        class="p-1 px-3 my-1 person"
+        data-user="{{ friend.id }}"
+      >
+        {{ friend.name }}
+      </a>
     {% endfor %}
   </div>
 </div>
