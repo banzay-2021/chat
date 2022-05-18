@@ -1,0 +1,29 @@
+.my-friends-body {
+    background: #7effe752;
+    height: 100%;
+    overflow-y: auto;
+}
+.bx-shadow-in {
+    box-shadow: inset 0 0 8px 4px rgba(0,0,0,0.23);
+}
+.person {
+    transition: all .8s;
+    background-color: #0087ff2b;
+    display: block;
+    color: #212529;
+    text-decoration: none;
+}
+.person:hover {
+    color: #212529;
+    background-color: #1400ff1f;
+}
+.message {
+    margin: 8px 0;
+    padding: 10px 10px;
+    background-color: #dcd9ff;
+    border-radius: 6px;
+}
+
+.message.from-me {
+    background-color: #bdb7ff;
+}

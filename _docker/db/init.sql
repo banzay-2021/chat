@@ -44,10 +44,10 @@ INSERT INTO `messages` (`id`, `message`, `user_from`, `user_to`, `created`, `cre
 -- --------------------------------------------------------
 
 --
--- Table structure `my_friends`
+-- Table structure `friends`
 --
 
-CREATE TABLE `my_friends` (
+CREATE TABLE `friends` (
   `id` int(11) UNSIGNED NOT NULL,
   `user_id` int(11) UNSIGNED NOT NULL,
   `friend_id` int(11) UNSIGNED NOT NULL,
@@ -57,10 +57,10 @@ CREATE TABLE `my_friends` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table data dump `my_friends`
+-- Table data dump `friends`
 --
 
-INSERT INTO `my_friends` (`id`, `user_id`, `friend_id`, `friend date`, `created`, `created_by`) VALUES
+INSERT INTO `friends` (`id`, `user_id`, `friend_id`, `friend date`, `created`, `created_by`) VALUES
 (1, 1, 2, '2022-05-17 12:59:33', '2022-05-17 12:59:33', 1),
 (2, 2, 1, '2022-05-17 12:59:33', '2022-05-17 12:59:33', 2),
 (3, 1, 3, '2022-05-17 13:01:01', '2022-05-17 13:01:01', 1);
@@ -107,12 +107,12 @@ ALTER TABLE `messages`
   ADD KEY `messages_from_user` (`user_from`);
 
 --
--- Table indexes `my_friends`
+-- Table indexes `friends`
 --
-ALTER TABLE `my_friends`
+ALTER TABLE `friends`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `my_friends_to_user` (`user_id`),
-  ADD KEY `my_friends_from_user` (`friend_id`);
+  ADD KEY `friends_to_user` (`user_id`),
+  ADD KEY `friends_from_user` (`friend_id`);
 
 --
 -- Table indexes `users`
@@ -120,6 +120,28 @@ ALTER TABLE `my_friends`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `login` (`login`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT для таблицы `friends`
+--
+ALTER TABLE `friends`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Foreign key constraints on stored tables
@@ -133,11 +155,11 @@ ALTER TABLE `messages`
   ADD CONSTRAINT `messages_to_user` FOREIGN KEY (`user_to`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
--- Table Foreign Key Constraints `my_friends`
+-- Table Foreign Key Constraints `friends`
 --
-ALTER TABLE `my_friends`
-  ADD CONSTRAINT `my_friends_from_user` FOREIGN KEY (`friend_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `my_friends_to_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+ALTER TABLE `friends`
+  ADD CONSTRAINT `friends_from_user` FOREIGN KEY (`friend_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `friends_to_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 -- --------------------------------------------------------

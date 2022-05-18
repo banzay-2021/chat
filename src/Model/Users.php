@@ -2,7 +2,7 @@
 
 namespace Chat\Model;
 
-class Users extends ModelBase
+class Users //extends ModelBase
 {
     //TODO:
 }

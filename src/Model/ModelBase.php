@@ -2,6 +2,8 @@
 
 namespace Chat\Model;
 
+use \Chat\Util\DataBase;
+
 abstract class ModelBase //implements \Chat\Model
 {
     protected $db;
