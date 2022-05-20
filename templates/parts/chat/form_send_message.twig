@@ -1,39 +1,18 @@
-<div class="row">
-  <div class="col-sm-8">
+{% block send_message %}
+  <form action="/chat" method="posr">
+    <div class="row">
+      <div class="col-sm-8">
       <textarea
         id="new-message"
         class="form-control"
         name="message"
         cols="30"
         rows="3"></textarea>
-  </div>
-  <div class="col-sm-4">
-    <button id="submit" type="submit" class="btn btn-primary w-100">Send
-    </button>
-  </div>
-</div>
-
-{# Temporary js #}
-<script type="text/javascript">
-  $(window).on('load', function () {
-
-    $('#submit').on('click', function (e) {
-      e.preventDefault();
-      let newMessage = $('#new-message').val();
-      if( !newMessage ) return false;
-      console.log(newMessage);
-      $('#new-message').val('');
-      let html = '' +
-        '<div class="row">' +
-          '<div class="col-md-2"></div>' +
-          '<div class="col-md-10">' +
-            '<div class="message from-me">' + newMessage +
-            '</div>' +
-          '</div>' +
-         '</div>';
-
-      $('#messages-box').append(html);
-      // TODO: send new message and after add in #messages-box;
-    });
-  });
-</script>
+      </div>
+      <div class="col-sm-4">
+        <button id="submit" type="submit" class="btn btn-primary w-100">Send
+        </button>
+      </div>
+    </div>
+  </form>
+{% endblock %}

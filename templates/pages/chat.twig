@@ -6,12 +6,20 @@
     <div class="row">
       <div class="col-md-8 mx-auto">
 
-        <h1 class="text-center mb-5">My chat</h1>
-
+        <h1 class="text-center">My chat</h1>
+        <div class="row mb-4">
+          <div class="col text-center">
+            <span id="no-login-mess" class="no-login visibility">
+              Please login or register.
+            </span>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-4 my-2">
             <div class="rounded-3 p-3 my-friends-body bx-shadow-in">
-              {% include 'parts/chat/my_friends.twig' %}
+              {% block my_friends %}
+                {% include 'parts/chat/my_friends.twig' %}
+              {% endblock %}
             </div>
           </div>
 
@@ -19,14 +27,18 @@
 
             <div class="row">
               <div class="col-md-12">
-                {% include 'parts/chat/messages.twig' %}
+                {% block messages %}
+                  {% include 'parts/chat/messages.twig' %}
+                {% endblock %}
               </div>
             </div>
 
             <div class="row">
               <div class="col-12 mt-4">
                 <div class="rounded-3 bx-shadow-in p-3">
-                  {% include 'parts/chat/form_send_message.twig' %}
+                  {% block send_message %}
+                    {% include 'parts/chat/form_send_message.twig' %}
+                  {% endblock %}
                 </div>
               </div>
             </div>
@@ -42,31 +54,205 @@
   {# Temporary js #}
   <script type="text/javascript">
 
-    let user = {{ user }};
     let hWindow = $(window).height();
     let hMessageBox = hWindow - (hWindow / 1.5);
+    let user = $.cookie('user');
+    let friend = $.cookie('friend');
+    let action = '';
+    let data = {};
+    if (friend) {
+      action = 'chat';
+      data = {'user': user, 'friend': friend, 'action': action}
+    } else {
+      action = 'friends';
+      data = {'user': user, 'action': action}
+    }
+    let messages = {};
+    let friends = {};
 
     $(window).on('load', function () {
-      $.cookie('user', user, { expires: 7 });
+
+      checkLogin();
       $('#messages-body').height(hMessageBox);
 
-      $('.person').on('click', function (e){
-        e.preventDefault();
-        let friend = $(this).attr('data-user');
-        $.cookie('friend', friend, { expires: 7 });
-        $('#messages-box').html('');
+      function checkLogin() {
+        if (!user) {
+          $('#no-login-mess').addClass('show');
+          $('#submit, #new-message').prop('disabled', true);
 
-        // TODO: get new messages and insert in #messages-box;
+        } else {
+          $('#no-login-mess').removeClass('show');
+          $('#submit, #new-message').prop('disabled', false);
+          loadChat();
+          checkТewMessages();
+        }
+      }
+
+      function loadChat() {
+        //let userinfo = {};
+        $.ajax({
+          url: '/api/',
+          method: 'post',
+          dataType: 'json',
+          data: data,
+          success: function (data) {
+
+            if (data.data.friends.length > 0) {
+              friends = data.data.friends;
+              addHtmlFriends();
+            } else {
+              $('#friends').hide();
+              let html = '<div class="mistake-text">No friends</div>';
+              $('#friends').html(html).fadeIn(800).delay(5000).fadeOut(800);;
+              $('#submit, #new-message').prop('disabled', true);
+            }
+
+            if (data.data.messages) {
+              messages = data.data.messages;
+              addHtmlMessages();
+            } else {
+              $('#messages-box').hide();
+              let html = '<div class="mistake-text">No messages.</div>';
+              if(friends.length > 0) html = '<div class="mistake-text">No messages.<br>Choose a friend to chat with.</div>';
+              $('#messages-box').html(html).fadeIn(800).delay(5000).fadeOut(800);
+              $('#submit, #new-message').prop('disabled', true);
+            }
+            setTimeout(function () {
+              $('.mistake-text').remove();
+            }, 10000);
+          }
+        });
+      }
+
+      function addHtmlFriends() {
+        $('#friends').hide();
+        let html = '';
+        $.each(friends, function (index, value) {
+          let selected = '';
+          if (value.id == friend) {
+            selected = 'active';
+          }
+          html += '<div class="p-1 px-3 my-1 person ' + selected + '"';
+          //html += 'href="/chat?user=' + user + '&from=' + value.id + '" ';
+          html += 'data-user="' + value.id + '">';
+          html += value.name;
+          html += '</div>';
+        });
+        $('#friends').html(html).fadeIn(1500);;
+
+        $('.person').on('click', function (e) {
+          e.preventDefault();
+          $('.person').removeClass('active');
+          $(this).addClass('active');
+          friend = $(this).attr('data-user');
+          $.cookie('friend', friend, {expires: 7});
+          $('#messages-box').fadeOut(500);
+          action = 'messages';
+          setTimeout(function () {
+            $.ajax({
+              url: '/api/',
+              method: 'post',
+              dataType: 'json',
+              data: {'user': user, 'friend': friend, 'action': action},
+              success: function (data) {
+                if (data.data.messages) {
+                  $('#submit, #new-message').prop('disabled', false);
+                  messages = data.data.messages;
+                  addHtmlMessages();
+                } else {
+                  $('#messages-box').hide();
+                  $('#submit, #new-message').prop('disabled', true);
+                  let html = '<div class="mistake-text">No messages.<br>Start first.</div>';
+                  $('#messages-box').html(html).fadeIn(1000);
+                  setTimeout(function () {
+                    $('.mistake-text').remove();
+                  }, 10000);
+                }
+              }
+            });
+          }, 800);
+        });
+      }
+
+      function addHtmlMessages() {
+        $('#messages-box').hide();
+        let html = '';
+        $.each(messages, function (index, value) {
+          html += '<div class="row">';
+          if (value.user_from == user) {
+            html += '<div class="col-md-2"></div>';
+            html += '<div class="col-md-10">';
+            html += '<div class="message from-me">';
+            html += value.message;
+            html += '</div>';
+            html += '</div>';
+          } else {
+            html += '<div class="col-md-10">';
+            html += '<div class="message">';
+            html += value.message;
+            html += '</div>';
+            html += '</div>';
+            html += '<div class="col-md-2"></div>';
+          }
+          html += '</div>';
+        });
+        $('#messages-box').html(html).fadeIn(1000);
+      }
+
+      $('#submit').on('click', function (e) {
+        e.preventDefault();
+        let newMessage = $('#new-message').val();
+        if( !newMessage ) return false;
+        action = 'add-message';
+
+        $.ajax({
+          url: '/api/',
+          method: 'post',
+          dataType: 'json',
+          data: {'user': user, 'friend': friend, 'message': newMessage, 'action': action},
+          success: function (data) {
+
+          }
+        });
+
+        $('#new-message').val('');
+        let html = '' +
+          '<div class="row">' +
+          '<div class="col-md-2"></div>' +
+          '<div class="col-md-10">' +
+          '<div class="message from-me visibility">' + newMessage +
+          '</div>' +
+          '</div>' +
+          '</div>';
+
+        $('#messages-box').append(html);
+        setTimeout(function () {
+          $('.message').addClass('show');
+        }, 500);
+
       });
+
+      function checkТewMessages() {
+        action = 'check-messages';
+        setInterval(function () {
+          $.ajax({
+            url: '/api/',
+            method: 'post',
+            dataType: 'json',
+            data: {'user': user, 'action': action},
+            success: function (data) {
+              if (data.data.messages) {
+                // TODO:
+                //$('#submit, #new-message').prop('disabled', false);
+                messages = data.data.messages;
+                //addHtmlMessages();
+              } else {
+
+              }
+            }
+          });
+        }, 5000);
+      }
     });
   </script>
-
-  {# Temporary css #}
-  <style>
-    #messages-body {
-      overflow-y: visible;
-      overflow-x: hidden;
-      position: relative;
-    }
-  </style>
 {% endblock %}

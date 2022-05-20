@@ -16,10 +16,16 @@ class Router
      */
     protected $pages = [
         'index' => [],
+        'login' => [],
+        'logout' => [],
         'registration' => [],
         'chat' => [],
         '404' => [],
-        'api' => []
+        'api' => [],
+        'api/friends' => [
+            'scenario' => 'api',
+            'action' => 'friends'
+        ]
     ];
 
 

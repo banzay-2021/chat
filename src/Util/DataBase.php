@@ -36,36 +36,20 @@ class DataBase
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function rows($sql, $params = [])
+    {
+        $query = $this->query($sql, $params);
+        return $query->fetchObject();
+    }
+
     public function column($sql, $params = [])
     {
         $query = $this->query($sql, $params);
         return $query->fetchColumn();
     }
 
-    public function insertSQL($params)
-    {
-        $arrayAllFields = array_keys($this->db->fieldsTable());
-        $arraySetFields = array();
-        $arrayData = array();
-
-        die();
-
-        //$num = $this->getMaxId('users') + 1;
-        $sql = "INSERT INTO ";
-        $sql .= "`users` (";
-        $sql .= "`name`, `login`";
-        $sql .= ")";
-        $sql .= " VALUES ";
-        $sql .= "(";
-        //$sql .= "'" . $num . "', ";
-        $sql .= "'" . $params["name"] . "', ";
-        $sql .= "'" . $params["login"] . "'";
-        $sql .= ");";
-        if ($this->db->query($sql) === TRUE) {
-            return "New record created successfully";
-        } else {
-            return "Error: " . $sql . " errorInfo - " . json_encode($this->db->errorInfo()) . ' errorCode - ' . $this->db->errorCode();
-        }
+    public function insertFromParams($sql, $params) {
+        return $this->query($sql, $params);
     }
 
     public function getCountLines($table)

@@ -17,11 +17,25 @@
             <a class="nav-link {% if reg == 'chat' %}active{% endif %}"
                href="/chat">Go to chat</a>
           </li>
-          <li class="nav-item">
+          <li id="nav-login" class="nav-item">
+            <a class="nav-link {% if reg == 'login' %}active{% endif %}"
+               href="/login">Login</a>
+          </li>
+          <li id="nav-logout" class="nav-item">
+            <a class="nav-link {% if reg == 'logout' %}active{% endif %}"
+               href="/logout">Log out</a>
+          </li>
+          <li id="nav-registration" class="nav-item">
             <a class="nav-link {% if reg == 'registration' %}active{% endif %}"
                href="/registration">Registration</a>
           </li>
         </ul>
+      </div>
+      <div class="d-flex">
+        <div class="text-white-50">
+          Hello <span id="user-info" class="text-white">guest</span>
+        </div>
+
       </div>
     </div>
   </nav>

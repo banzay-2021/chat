@@ -27,6 +27,7 @@ CREATE TABLE `messages` (
   `message` text,
   `user_from` int(11) UNSIGNED NOT NULL,
   `user_to` int(11) UNSIGNED NOT NULL,
+  `status` tinyint(1) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` int(11) UNSIGNED NOT NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -75,6 +76,7 @@ CREATE TABLE `users` (
   `id` int(11) UNSIGNED NOT NULL,
   `name` char(100) NOT NULL,
   `login` char(100) NOT NULL,
+  `pass` char(32) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -83,10 +85,10 @@ CREATE TABLE `users` (
 -- Table data dump `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `login`, `created`, `created_by`) VALUES
-(1, 'Vasia', 'vasia', '2022-05-17 09:55:50', 1),
-(2, 'Petia', 'petia', '2022-05-17 09:55:50', 2),
-(3, 'Ivan', 'ivan', '2022-05-17 13:00:36', 3);
+INSERT INTO `users` (`id`, `name`, `login`, `pass`, `created`, `created_by`) VALUES
+(1, 'Vasia', 'vasia', '202cb962ac59075b964b07152d234b70', '2022-05-17 09:55:50', 1),
+(2, 'Petia', 'petia', '202cb962ac59075b964b07152d234b70', '2022-05-17 09:55:50', 2),
+(3, 'Ivan', 'ivan', '202cb962ac59075b964b07152d234b70', '2022-05-17 13:00:36', 3);
 
 --
 -- Stored Table Indexes

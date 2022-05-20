@@ -1,0 +1,67 @@
+  <style>
+    .visibility {
+      opacity: 0;
+      visibility: hidden;
+      transition: all .8s;
+    }
+    .visibility.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    .mistake-text {
+      font-size: 20px;
+      color: white;
+      background: #f84d4d;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    .success-text {
+      font-size: 20px;
+      color: white;
+      background: green;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    .no-login {
+      font-size: 20px;
+      color: white;
+      background: #f84d4d;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    .person {
+      transition: all .8s;
+      background-color: #0087ff2b;
+      display: block;
+      color: #212529;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .person.active {
+      background-color: #f5b9f7;
+    }
+    #messages-body {
+      overflow-y: visible;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .no-message {
+
+    }
+    .mistake {
+      /*display: none;*/
+      margin-left: 14px;
+      font-size: 14px;
+      color: #fff;
+      background-color: #ff0000ab;
+      padding: 0 8px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all .8s;
+    }
+
+    .mistake.show {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>

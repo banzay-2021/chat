@@ -41,6 +41,12 @@ class Api implements Scenario
     public function run(Request $req): array
     {
         switch ($this->data['post']['action']) {
+            case 'userinfo':
+                $this->userinfo();
+                break;
+            case 'login':
+                $this->login();
+                break;
             case 'chat':
                 // load too arrays messages + friends
                 $this->chat();
@@ -50,6 +56,12 @@ class Api implements Scenario
                 break;
             case 'friends':
                 $this->friends();
+                break;
+            case 'check-messages':
+                $this->checkMessages();
+                break;
+            case 'add-message':
+                $this->addMessage();
                 break;
             case 'registration':
                 $this->registrationUser();
@@ -61,6 +73,27 @@ class Api implements Scenario
         return [];
     }
 
+    public function userinfo($userId = 0) {
+        $params = [
+            'id' => $userId > 0 ? $userId : $this->data['post']['user']
+        ];
+        $sql = 'SELECT id, name, login FROM users';
+        $sql .= ' WHERE id=:id';
+        $this->data['data']['userinfo'] = $this->db->rows($sql, $params);
+    }
+
+    public function login() {
+        $params = [
+            'login' => $this->data['post']['login'],
+            'pass' => $this->md5Encode($this->data['post']['pass'])
+        ];
+
+        $sql = 'SELECT id, name, login FROM users';
+        $sql .= ' WHERE login=:login';
+        $sql .= ' AND pass=:pass';
+        $this->data['data']['userinfo'] = $this->db->rows($sql, $params);
+    }
+
     public function chat() {
         $this->messages();
         $this->friends();
@@ -69,12 +102,27 @@ class Api implements Scenario
     public function messages() {
         $params = [
             'to' => $this->data['post']['user'],
-            'from' => $this->data['post']['user']
+            'from' => $this->data['post']['friend']
         ];
-        $sql = 'SELECT message, created FROM messages';
-        $sql .= ' WHERE user_to=:to';
-        $sql .= ' OR user_from=:from';
+        $sql = 'SELECT message, created, user_from, user_to FROM messages';
+        $sql .= ' WHERE (user_to=:to';
+        $sql .= ' AND user_from=:from)';
+        $sql .= ' OR ';
+        $sql .= '(user_from=:to';
+        $sql .= ' AND user_to=:from)';
+        $sql .= ' ORDER BY created ASC';
+        $this->data['data']['messages'] = $this->db->row($sql, $params);
+    }
 
+    public function checkMessages() {
+        $params = [
+            'to' => $this->data['post']['user']
+        ];
+        $sql = 'SELECT message, created, user_from, user_to FROM messages';
+        $sql .= ' WHERE (user_to=:to';
+        $sql .= ' OR user_from=:to)';
+        $sql .= ' AND status IS NULL';
+        $sql .= ' ORDER BY created ASC';
         $this->data['data']['messages'] = $this->db->row($sql, $params);
     }
 
@@ -89,21 +137,58 @@ class Api implements Scenario
         $this->data['data']['friends'] = $this->db->row($sql, $params);
     }
 
-    public function registrationUser($params) {
-        // TODO:
+    public function addMessage() {
+        $params = [
+            'to' => $this->data['post']['friend'],
+            'from' => $this->data['post']['user'],
+            'message' => $this->data['post']['message'],
+            'created_by' => $this->data['post']['user']
+        ];
 
+        $sql = 'INSERT INTO messages (message, user_from, user_to, created_by) VALUES ';
+        $sql .= '(:message, :from, :to, :created_by)';
 
-        //$sql = "INSERT INTO MyGuests (firstname, lastname, email) VALUES ('html', 'css', 'html5css@example.com')";
+        $this->data['data']['message'] = $this->db->insertFromParams($sql, $params);
 
+    }
 
-        $db = new DataBase();
-        $this->data['data'] = $db->insertSQL($params);
+    public function registrationUser() {
 
-        $this->returnApi($this->data);
+        $params = [
+            'name' => $this->data['post']['name'],
+            'login' => $this->data['post']['login'],
+            'pass' => $this->md5Encode($this->data['post']['pass'])
+        ];
+
+        $checkColumn = $this->checkLogin();
+        if ($checkColumn) return $this->data['data']['user'] = 'login';
+
+        $sql = 'INSERT INTO users (name, login, pass) VALUES ';
+        $sql .= '(:name, :login, :pass)';
+
+        $this->db->insertFromParams($sql, $params);
+
+        $userId = $this->checkLogin();
+        $this->data['data']['user'] = $userId;
+        $this->userinfo($userId);
+    }
+
+    public function checkLogin() {
+        $params = [
+            'login' => $this->data['post']['login']
+        ];
+        $sql = 'SELECT id FROM users';
+        $sql .= ' WHERE login=:login';
+
+        return $this->db->column($sql, $params);
+    }
+
+    public function md5Encode($text) {
+        return md5($text);
     }
 
     public function returnApi() {
         header('Content-Type: application/json; charset=utf-8');
-        exit(json_encode($this->data));
+        exit(json_encode($this->data, JSON_UNESCAPED_UNICODE));
     }
 }

@@ -1,18 +1,18 @@
 {% extends 'layout/default.twig' %}
 
-{% block title %}Registration{% endblock %}
+{% block title %}Log Out{% endblock %}
 {% block content %}
   <div class="container my-5">
     <div class="row">
       <div class="col-md-8 mx-auto">
-        <h1 class="text-center">Registration</h1>
+        <h1 class="text-center">Log Out</h1>
         <div class="row mb-4">
           <div class="col text-center">
             <span id="login-mess" class="visibility"></span>
           </div>
         </div>
-        {% block registration %}
-          {% include 'parts/registration/form_registration.twig' %}
+        {% block logout %}
+          {% include 'parts/logout/form_logout.twig' %}
         {% endblock %}
       </div>
     </div>

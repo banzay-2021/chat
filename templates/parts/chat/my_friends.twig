@@ -1,15 +1,16 @@
-<div class="">
-  <h3>My friend</h3>
+{% block my_friends_block %}
   <div class="">
-    {% for friend in friends %}
-      <a
-        href="/chat?user={{ user }}&from={{ friend.id }}"
-        class="p-1 px-3 my-1 person"
-        data-user="{{ friend.id }}"
-      >
-        {{ friend.name }}
-      </a>
-    {% endfor %}
+    <h3>My friend</h3>
+    <div id="friends" class="">
+      {% for friend in friends %}
+        <div
+          href="/chat?user={{ user }}&from={{ friend.id }}"
+          class="p-1 px-3 my-1 person"
+          data-user="{{ friend.id }}"
+        >
+          {{ friend.name }}
+        </div>
+      {% endfor %}
+    </div>
   </div>
-</div>
-
+{% endblock %}

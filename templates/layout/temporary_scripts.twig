@@ -1,0 +1,29 @@
+{% block scripts %}
+  <script type="text/javascript">
+    let userinfo = {};
+    $(window).on('load', function () {
+      var user = $.cookie('user');
+      if (user) {
+        $.ajax({
+          url: '/api/',
+          method: 'post',
+          dataType: 'json',
+          data: { 'user': user, 'action': 'userinfo'},
+          success: function(data){
+            if(data.data.userinfo.name != ''){
+              userinfo = data.data.userinfo;
+              $('#user-info').text(userinfo.name);
+              $('#nav-login').hide();
+              $('#nav-logout').show();
+              $('#nav-registration').hide();
+            }
+          }
+        });
+      } else {
+        $('#nav-login').show();
+        $('#nav-logout').hide();
+        $('#nav-registration').show();
+      }
+    });
+  </script>
+{% endblock %}

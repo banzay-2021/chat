@@ -7,25 +7,26 @@ use \Chat\Inject;
 use \Chat\Scenario;
 
 /**
- * Implements scenarios of chat page for authorized visitors.
+ * Implements scenarios of log out page for authorized visitors.
  */
-class Chat implements Scenario
+class Logout implements Scenario
 {
     use Inject\HtmlRenderer;
 
     /**
-     * Runs scenario of chat page.
+     * Runs scenario of log out page.
      *
-     * @param Request $req HTTP request to chat page.
+     * @param Request $req HTTP request to log out page.
      *
-     * @return array    Result of chat page scenario.
+     * @return array    Result of log out page scenario.
      */
     public function run(Request $req): array
     {
-        //echo 'Chat => run<br>';
+        //echo 'Log out => run<br>';
         // TODO: Sending temporary data to the template
         return ['toRender' => [
             'reg' => $req->page,
         ]];
     }
 }
+

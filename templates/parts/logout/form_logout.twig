@@ -1,0 +1,58 @@
+{% block logout %}
+  <h3>{# login #}</h3>
+
+  <form action="/logout" method="post" class="my-5">
+    <div class="mb-3">
+      <label for="inputLogin" class="form-label">Yor login</label>
+      <input name="login" type="text" class="form-control" id="inputLogin"
+             aria-describedby="loginHelp" maxlength="50" disabled>
+    </div>
+
+    <button id="submit" type="submit" class="btn btn-primary">I want to log out</button>
+  </form>
+
+
+  {# Temporary js #}
+
+  <script type="text/javascript">
+
+
+    $(window).on('load', function () {
+      let user = $.cookie('user');
+      if (user) {
+        $.ajax({
+          url: '/api/',
+          method: 'post',
+          dataType: 'json',
+          data: { 'user': user, 'action': 'userinfo'},
+          success: function(data){
+            if(data.data.userinfo.name != ''){
+              userinfo = data.data.userinfo;
+              $('#user-info').text(userinfo.name);
+              $('#inputLogin').val(userinfo.login);
+            }
+          }
+        });
+      } else  {
+        $('#login-mess').html('Please login or register.').addClass('show mistake-text');
+        $('#submit, #inputLogin').prop('disabled', true);;
+      }
+
+      $('#submit').on('click', function (e) {
+        e.preventDefault();
+        $('#inputLogin').val('');
+        $('#user-info').text('guest');
+        $.removeCookie('user');
+        $.removeCookie('friend');
+        $('#login-mess').html('Bye Bye )))').addClass('show success-text');
+        $('#submit').prop('disabled', true);
+        $('#nav-login').show();
+        $('#nav-logout').hide();
+        $('#nav-registration').show();
+        setTimeout(function () {
+          window.location.href = '/';
+        }, 3000);
+      });
+    });
+  </script>
+{% endblock %}
