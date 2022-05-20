@@ -19,11 +19,11 @@ class Api implements Scenario
 
     public function __construct()
     {
-        if(isset($_GET)){
+        if (isset($_GET)) {
             $this->data['get'] = $_GET;
         }
 
-        if(isset($_POST)){
+        if (isset($_POST)) {
             $this->data['post'] = $_POST;
         }
 
@@ -34,7 +34,7 @@ class Api implements Scenario
     /**
      * Runs scenario of api request.
      *
-     * @param Request $req      api request.
+     * @param Request $req api request.
      *
      * @return array    Result of index page scenario.
      */
@@ -57,11 +57,17 @@ class Api implements Scenario
             case 'friends':
                 $this->friends();
                 break;
+            case 'add-friend':
+                $this->addFriend();
+                break;
             case 'check-messages':
                 $this->checkMessages();
                 break;
             case 'add-message':
                 $this->addMessage();
+                break;
+            case 'status-message':
+                $this->updateStatusMessage();
                 break;
             case 'registration':
                 $this->registrationUser();
@@ -73,7 +79,8 @@ class Api implements Scenario
         return [];
     }
 
-    public function userinfo($userId = 0) {
+    public function userinfo($userId = 0)
+    {
         $params = [
             'id' => $userId > 0 ? $userId : $this->data['post']['user']
         ];
@@ -82,7 +89,8 @@ class Api implements Scenario
         $this->data['data']['userinfo'] = $this->db->rows($sql, $params);
     }
 
-    public function login() {
+    public function login()
+    {
         $params = [
             'login' => $this->data['post']['login'],
             'pass' => $this->md5Encode($this->data['post']['pass'])
@@ -94,39 +102,43 @@ class Api implements Scenario
         $this->data['data']['userinfo'] = $this->db->rows($sql, $params);
     }
 
-    public function chat() {
+    public function chat()
+    {
         $this->messages();
         $this->friends();
     }
 
-    public function messages() {
+    public function messages()
+    {
         $params = [
             'to' => $this->data['post']['user'],
             'from' => $this->data['post']['friend']
         ];
-        $sql = 'SELECT message, created, user_from, user_to FROM messages';
+        $sql = 'SELECT id, user_from, user_to, message, created, status FROM messages';
         $sql .= ' WHERE (user_to=:to';
         $sql .= ' AND user_from=:from)';
         $sql .= ' OR ';
         $sql .= '(user_from=:to';
         $sql .= ' AND user_to=:from)';
         $sql .= ' ORDER BY created ASC';
+        $sql .= ' LIMIT 10';
         $this->data['data']['messages'] = $this->db->row($sql, $params);
     }
 
-    public function checkMessages() {
+    public function checkMessages()
+    {
         $params = [
-            'to' => $this->data['post']['user']
+            'to' => (int) $this->data['post']['user']
         ];
-        $sql = 'SELECT message, created, user_from, user_to FROM messages';
-        $sql .= ' WHERE (user_to=:to';
-        $sql .= ' OR user_from=:to)';
+        $sql = 'SELECT id, user_from, user_to, message, created FROM messages';
+        $sql .= ' WHERE user_to=:to';
         $sql .= ' AND status IS NULL';
         $sql .= ' ORDER BY created ASC';
         $this->data['data']['messages'] = $this->db->row($sql, $params);
     }
 
-    public function friends() {
+    public function friends()
+    {
         $params = [
             'id' => $this->data['post']['user']
         ];
@@ -137,10 +149,37 @@ class Api implements Scenario
         $this->data['data']['friends'] = $this->db->row($sql, $params);
     }
 
-    public function addMessage() {
+    public function addFriend()
+    {
         $params = [
-            'to' => $this->data['post']['friend'],
+            'friend' => $this->data['post']['friend'],
+            'user' => $this->data['post']['user']
+        ];
+
+        $myFrieds = $this->friends();
+        if ($myFrieds && count($myFrieds) > 0) {
+            foreach ($myFrieds as $fried) {
+                if ($fried->id == $params['friend']) {
+                    return $this->data['data']['friend'] = 'isfried';
+                }
+            }
+        }
+
+
+        $sql = 'INSERT INTO friends ( user_id, friend_id) VALUES ';
+        $sql .= '(:user, :friend)';
+        $this->db->insertFromParams($sql, $params);
+
+        $sql = 'INSERT INTO friends ( user_id, friend_id) VALUES ';
+        $sql .= '(:friend, :user)';
+        $this->data['data']['friend'] = $this->db->insertFromParams($sql, $params);
+    }
+
+    public function addMessage()
+    {
+        $params = [
             'from' => $this->data['post']['user'],
+            'to' => $this->data['post']['friend'],
             'message' => $this->data['post']['message'],
             'created_by' => $this->data['post']['user']
         ];
@@ -152,8 +191,23 @@ class Api implements Scenario
 
     }
 
-    public function registrationUser() {
+    public function updateStatusMessage()
+    {
+        if (isset($this->data['post']['messages']) && count($this->data['post']['messages']) > 0) {
+            foreach ($this->data['post']['messages'] as $messagesId) {
+                $params = ['id' => $messagesId];
+                $sql = 'UPDATE messages SET status = 1 WHERE id = :id';
+                $this->db->updateColumn($sql, $params);
+            }
+            $this->data['data']['result'] = true;
+        } else {
+            $this->data['data']['result'] = false;
+        }
+    }
 
+    public function registrationUser()
+    {
+        // "ref-user" also passed to POST but not used yet
         $params = [
             'name' => $this->data['post']['name'],
             'login' => $this->data['post']['login'],
@@ -173,7 +227,8 @@ class Api implements Scenario
         $this->userinfo($userId);
     }
 
-    public function checkLogin() {
+    public function checkLogin()
+    {
         $params = [
             'login' => $this->data['post']['login']
         ];
@@ -183,11 +238,13 @@ class Api implements Scenario
         return $this->db->column($sql, $params);
     }
 
-    public function md5Encode($text) {
+    public function md5Encode($text)
+    {
         return md5($text);
     }
 
-    public function returnApi() {
+    public function returnApi()
+    {
         header('Content-Type: application/json; charset=utf-8');
         exit(json_encode($this->data, JSON_UNESCAPED_UNICODE));
     }

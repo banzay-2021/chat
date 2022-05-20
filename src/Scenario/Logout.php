@@ -18,7 +18,7 @@ class Logout implements Scenario
      *
      * @param Request $req HTTP request to log out page.
      *
-     * @return array    Result of log out page scenario.
+     * @return array       Result of log out page scenario.
      */
     public function run(Request $req): array
     {

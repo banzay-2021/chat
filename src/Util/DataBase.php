@@ -52,6 +52,10 @@ class DataBase
         return $this->query($sql, $params);
     }
 
+    public function updateColumn($sql, $params) {
+        return $this->query($sql, $params);
+    }
+
     public function getCountLines($table)
     {
         $sql = "SELECT COUNT(1) FROM " . $table;

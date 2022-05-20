@@ -69,7 +69,7 @@
               let userinfo = data.data.userinfo;
               $('#user-info').text(userinfo.name);
               $('#login-mess').html("Hello again " + userinfo.name + "!").addClass('show success-text');
-              $.cookie('user', userinfo.id, {expires: 7});
+              $.cookie('user', userinfo.id, {path: '/', expires: 7});
               $('#nav-login').hide();
               $('#nav-logout').show();
               $('#nav-registration').hide();

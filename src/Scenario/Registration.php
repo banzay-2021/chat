@@ -18,9 +18,9 @@ class Registration implements Scenario
     /**
      * Runs scenario of index page.
      *
-     * @param Request $req      HTTP request to registration page.
+     * @param Request $req   HTTP request to registration page.
      *
-     * @return array    Result of registration page scenario.
+     * @return array         Result of registration page scenario.
      */
     public function run(Request $req): array
     {

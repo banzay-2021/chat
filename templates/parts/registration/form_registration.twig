@@ -1,5 +1,5 @@
 {% block registration %}
-  <form action="/registration" method="get" class="my-5">
+  <form id="registration-form" action="/registration" method="get" class="my-5">
     <div class="mb-3">
       <label for="inputName" class="form-label">Your name</label>
       <span id="mistake-name" class="mistake"></span>
@@ -34,13 +34,40 @@
     </div>
     <button id="submit" type="submit" class="btn btn-primary">Submit</button>
   </form>
-
+  <form id="accept-invitation" action="/registration" method="get" class="mb-5">
+    <div class="mb-3">
+      <label for="inputName" class="form-label">You are invited to the Super Chat.
+        <br>It will automatically be added to your chat.
+        <br>Do you accept the offer?</label>
+    </div>
+    <button id="submit" type="submit" class="btn btn-primary">I accept</button>
+  </form>
 
   {# Temporary js #}
   <script type="text/javascript">
+    let userRefInfo = {};
+    var user = $.cookie('user');
+    let refUser = window.location.search.replace('?', '').split('&').reduce(function (p, e) {
+        var a = e.split('=');
+        p[decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
+        return p;
+      }, {}
+    ).reflink;
+    let isMyFriend = false;
+
     $(window).on('load', function () {
+      $('#registration-form').hide();
+      $('#accept-invitation').hide();
+      if(refUser && user) {
+        $('#accept-invitation').fadeIn(800);
+      } else {
+        $('#registration-form').fadeIn(800);
+      }
+
       let mistake = 'This field cannot be empty';
-      $('#submit').on('click', function (e) {
+      getInfoRefUser();
+
+      $('#registration #submit').on('click', function (e) {
         e.preventDefault();
 
         let name = $('#inputName').val();
@@ -76,31 +103,40 @@
         }
 
         let check = $('#check1').prop('checked');
+
         action = 'registration';
+        let data = {
+          'name': name,
+          'login': login,
+          'pass': pass,
+          'ref-user': refUser,
+          'action': action
+        }
 
         $.ajax({
           url: '/api/',
           method: 'post',
           dataType: 'json',
-          data: {'name': name, 'login': login, 'pass': pass, 'action': action},
+          data: data,
           success: function (data) {
-            console.log(data);
             if (data.data.user == 'login') {
               mistake = 'Sorry, this login is busy.';
               mistakeAction('inputLogin', 'mistake-login', mistake);
               return false;
-            } else if(data.data.user > '0') {
+            } else if (data.data.user > '0') {
               clearForm();
               let userinfo = data.data.userinfo;
               $('#user-info').text(userinfo.name);
               $('#login-mess').html("Hello " + userinfo.name + "!").addClass('show success-text');
-              $.cookie('user', userinfo.id, {expires: 7});
+              user = userinfo.id;
+              $.cookie('user', user, {path: '/', expires: 7});
+              addRefUserToMyFriend();
               $('#nav-login').hide();
               $('#nav-logout').show();
               $('#nav-registration').hide();
               setTimeout(function () {
                 window.location.href = '/chat';
-              }, 40000);
+              }, 4000);
             } else {
 
             }
@@ -108,6 +144,16 @@
         });
       });
 
+      $('#accept-invitation #submit').on('click', function (e) {
+        e.preventDefault();
+
+        addRefUserToMyFriend();
+
+        setTimeout(function () {
+          $.cookie('friend', refUser, {path: '/', expires: 7});
+          window.location.href = '/chat';
+        }, 4000);
+      });
       function clearForm() {
         $('#inputName, #inputLogin, #inputPassword').val('');
         $('#mistake-name, #mistake-login, #inputPassword').html('').removeClass('show');
@@ -121,6 +167,126 @@
           $('#' + toMistake).removeClass('show');
         }, 3000);
       }
+
+      function getInfoRefUser() {
+        $('.ref-user-info-body').html('').hide();
+        if (refUser) {
+          $.ajax({
+            url: '/api/',
+            method: 'post',
+            dataType: 'json',
+            data: {'user': refUser, 'action': 'userinfo'},
+            success: function (data) {
+              if (data.data.userinfo.login) {
+                userRefInfo = data.data.userinfo;
+                isMyFriend = checkFriend();
+                setTimeout(function () {
+                  let html = '';
+                  if (isMyFriend) {
+                    html += '<div class="ref-user-info-box mistake-text">';
+                    html += 'The inviter is already your friend';
+                    userRefInfo = {};
+                    refUser = undefined;
+                    setTimeout(function () {
+                      window.location.href = '/registration';
+                    }, 3500);
+                  } else {
+                    if (userRefInfo.id == user) {
+                      html += '<div class="ref-user-info-box mistake-text">';
+                      html += 'You can not invite yourself';
+                      userRefInfo = {};
+                      refUser = undefined;
+                    } else {
+                      html = '<div class="ref-user-info-box">';
+                      //html += '<span>' + userRefInfo.name + '</span> invited you to Super Chat';
+                      html += 'Inviter Verified';
+                    }
+                  }
+                  html += '</div>';
+                  $('.ref-user-info-body').html(html).fadeIn(800);
+                }, 3500);
+              } else {
+                let html = '';
+                html = '<div class="ref-user-info-box mistake-text">';
+                html += 'There is no inviter';
+                html += '</div>';
+                userRefInfo = {};
+                refUser = undefined;
+                $('.ref-user-info-body').html(html).fadeIn(800).delay(3000).fadeOut(800);
+                setTimeout(function () {
+                  window.location.href = '/registration';
+                }, 3000);
+              }
+            }
+          });
+        }
+      }
+
+      function checkFriend() {
+        if (!user) return isMyFriend = false;
+        action = 'friends';
+        data = {'user': user, 'action': action}
+        $.ajax({
+          url: '/api/',
+          method: 'post',
+          dataType: 'json',
+          data: data,
+          success: function (data) {
+            if (data.data.friends.length > 0) {
+              $.each(data.data.friends, function (index, value) {
+                if(value.id == refUser) {
+                  isMyFriend = true;
+                }
+              });
+            }
+          }
+        });
+      }
+
+      function addRefUserToMyFriend() {
+        action = 'add-friend';
+        $.ajax({
+          url: '/api/',
+          method: 'post',
+          dataType: 'json',
+          data: {
+            'user': user,
+            'friend': refUser,
+            'action': action
+          },
+          success: function (data) {
+            if(data.data.friend == 'isfried') {
+
+            } else if(data.data.friend) {
+              sendMessageFriend();
+            } else {
+
+            }
+          }
+        });
+      }
+
+      function sendMessageFriend() {
+        action = 'add-message';
+        //let newMessage = userinfo.name + ' accepted your invitation';
+        let newMessage = 'I accepted your invitation';
+        $.ajax({
+          url: '/api/',
+          method: 'post',
+          dataType: 'json',
+          data: {
+            'user': user,
+            'friend': refUser,
+            'message': newMessage,
+            'action': action
+          },
+          success: function (data) {
+
+          }
+        });
+
+      }
+
     });
   </script>
 {% endblock %}

@@ -1,29 +1,64 @@
 {% block scripts %}
   <script type="text/javascript">
     let userinfo = {};
+    var userFriend = {};
+    var user = false;
     $(window).on('load', function () {
-      var user = $.cookie('user');
-      if (user) {
-        $.ajax({
-          url: '/api/',
-          method: 'post',
-          dataType: 'json',
-          data: { 'user': user, 'action': 'userinfo'},
-          success: function(data){
-            if(data.data.userinfo.name != ''){
-              userinfo = data.data.userinfo;
-              $('#user-info').text(userinfo.name);
-              $('#nav-login').hide();
-              $('#nav-logout').show();
-              $('#nav-registration').hide();
+      user = $.cookie('user');
+      checkUser();
+      //getMyFiends();
+
+      function checkUser() {
+        if (user) {
+          $.ajax({
+            url: '/api/',
+            method: 'post',
+            dataType: 'json',
+            data: {'user': user, 'action': 'userinfo'},
+            success: function (data) {
+              if (data.data.userinfo.name) {
+                userinfo = data.data.userinfo;
+                $('#user-info').text(userinfo.name);
+                $('#nav-login').hide();
+                $('#nav-logout').show();
+                $('#nav-registration').hide();
+                addRefLink();
+              }
             }
-          }
-        });
-      } else {
-        $('#nav-login').show();
-        $('#nav-logout').hide();
-        $('#nav-registration').show();
+          });
+        } else {
+          $('#nav-login').show();
+          $('#nav-logout').hide();
+          $('#nav-registration').show();
+        }
       }
+
+      function addRefLink() {
+        let html = '<pre class="ref-box"><span>Your invite link: ';
+        html += window.location.hostname + '/registration/?reflink=' + user;
+        html += '</span></pre>';
+        if ($('*').is('.body-for-ref')) {
+          $('.body-for-ref').append(html)
+        }
+      }
+
+      // function getMyFiends() {
+      //   if (user) {
+      //     action = 'friends';
+      //     data = {'user': user, 'action': action}
+      //     $.ajax({
+      //       url: '/api/',
+      //       method: 'post',
+      //       dataType: 'json',
+      //       data: data,
+      //       success: function (data) {
+      //         if (data.data.friends.length > 0) {
+      //           userFriend = data.data.friends;
+      //         }
+      //       }
+      //     });
+      //   }
+      // }
     });
   </script>
 {% endblock %}

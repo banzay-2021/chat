@@ -18,7 +18,7 @@ class Chat implements Scenario
      *
      * @param Request $req HTTP request to chat page.
      *
-     * @return array    Result of chat page scenario.
+     * @return array       Result of chat page scenario.
      */
     public function run(Request $req): array
     {

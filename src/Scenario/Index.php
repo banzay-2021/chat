@@ -18,9 +18,9 @@ class Index implements Scenario
     /**
      * Runs scenario of index page.
      *
-     * @param Request $req HTTP request to index page.
+     * @param Request $req   HTTP request to index page.
      *
-     * @return array    Result of index page scenario.
+     * @return array         Result of index page scenario.
      */
     public function run(Request $req): array
     {

@@ -2,11 +2,11 @@
 
 {% block title %}Chat{% endblock %}
 {% block content %}
-  <div class="container my-5">
+  <div class="container">
     <div class="row">
-      <div class="col-md-8 mx-auto">
+      <div class="col-md-8 mx-auto body-for-ref">
 
-        <h1 class="text-center">My chat</h1>
+        <h1 class="text-center mt-5">My chat</h1>
         <div class="row mb-4">
           <div class="col text-center">
             <span id="no-login-mess" class="no-login visibility">
@@ -14,8 +14,8 @@
             </span>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-4 my-2">
+        <div class="row mb-5">
+          <div class="col-md-4">
             <div class="rounded-3 p-3 my-friends-body bx-shadow-in">
               {% block my_friends %}
                 {% include 'parts/chat/my_friends.twig' %}
@@ -23,7 +23,7 @@
             </div>
           </div>
 
-          <div class="col-md-8 my-2">
+          <div class="col-md-8">
 
             <div class="row">
               <div class="col-md-12">
@@ -55,22 +55,23 @@
   <script type="text/javascript">
 
     let hWindow = $(window).height();
-    let hMessageBox = hWindow - (hWindow / 1.5);
-    let user = $.cookie('user');
-    let friend = $.cookie('friend');
+    let hMessageBox = hWindow - (hWindow / 1.3);
     let action = '';
     let data = {};
-    if (friend) {
-      action = 'chat';
-      data = {'user': user, 'friend': friend, 'action': action}
-    } else {
-      action = 'friends';
-      data = {'user': user, 'action': action}
-    }
-    let messages = {};
     let friends = {};
+    let messages = {};
+    let messagesNull = [];
 
     $(window).on('load', function () {
+      var user = $.cookie('user');
+      let friend = $.cookie('friend');
+      if (friend) {
+        action = 'chat';
+        data = {'user': user, 'friend': friend, 'action': action}
+      } else {
+        action = 'friends';
+        data = {'user': user, 'action': action}
+      }
 
       checkLogin();
       $('#messages-body').height(hMessageBox);
@@ -84,7 +85,7 @@
           $('#no-login-mess').removeClass('show');
           $('#submit, #new-message').prop('disabled', false);
           loadChat();
-          checkТewMessages();
+          checkNewMessages();
         }
       }
 
@@ -103,7 +104,8 @@
             } else {
               $('#friends').hide();
               let html = '<div class="mistake-text">No friends</div>';
-              $('#friends').html(html).fadeIn(800).delay(5000).fadeOut(800);;
+              $('#friends').html(html).fadeIn(800).delay(5000).fadeOut(800);
+              ;
               $('#submit, #new-message').prop('disabled', true);
             }
 
@@ -113,7 +115,7 @@
             } else {
               $('#messages-box').hide();
               let html = '<div class="mistake-text">No messages.</div>';
-              if(friends.length > 0) html = '<div class="mistake-text">No messages.<br>Choose a friend to chat with.</div>';
+              if (friends.length > 0) html = '<div class="mistake-text">Choose a friend to chat with.</div>';
               $('#messages-box').html(html).fadeIn(800).delay(5000).fadeOut(800);
               $('#submit, #new-message').prop('disabled', true);
             }
@@ -138,14 +140,15 @@
           html += value.name;
           html += '</div>';
         });
-        $('#friends').html(html).fadeIn(1500);;
+        $('#friends').html(html).fadeIn(1500);
+        ;
 
         $('.person').on('click', function (e) {
           e.preventDefault();
           $('.person').removeClass('active');
           $(this).addClass('active');
           friend = $(this).attr('data-user');
-          $.cookie('friend', friend, {expires: 7});
+          $.cookie('friend', friend, {path: '/', expires: 7});
           $('#messages-box').fadeOut(500);
           action = 'messages';
           setTimeout(function () {
@@ -177,7 +180,11 @@
       function addHtmlMessages() {
         $('#messages-box').hide();
         let html = '';
+        messagesNull = [];
         $.each(messages, function (index, value) {
+          if (value.status == null) {
+            messagesNull.push(value.id);
+          }
           html += '<div class="row">';
           if (value.user_from == user) {
             html += '<div class="col-md-2"></div>';
@@ -197,25 +204,32 @@
           html += '</div>';
         });
         $('#messages-box').html(html).fadeIn(1000);
+        changeStatusMessages();
       }
 
       $('#submit').on('click', function (e) {
         e.preventDefault();
         let newMessage = $('#new-message').val();
-        if( !newMessage ) return false;
+        if (!newMessage) return false;
         action = 'add-message';
 
         $.ajax({
           url: '/api/',
           method: 'post',
           dataType: 'json',
-          data: {'user': user, 'friend': friend, 'message': newMessage, 'action': action},
+          data: {
+            'user': user,
+            'friend': friend,
+            'message': newMessage,
+            'action': action
+          },
           success: function (data) {
 
           }
         });
 
         $('#new-message').val('');
+
         let html = '' +
           '<div class="row">' +
           '<div class="col-md-2"></div>' +
@@ -229,12 +243,11 @@
         setTimeout(function () {
           $('.message').addClass('show');
         }, 500);
-
       });
 
-      function checkТewMessages() {
-        action = 'check-messages';
+      function checkNewMessages() {
         setInterval(function () {
+          action = 'check-messages';
           $.ajax({
             url: '/api/',
             method: 'post',
@@ -242,16 +255,50 @@
             data: {'user': user, 'action': action},
             success: function (data) {
               if (data.data.messages) {
-                // TODO:
-                //$('#submit, #new-message').prop('disabled', false);
                 messages = data.data.messages;
-                //addHtmlMessages();
-              } else {
+                console.log(friend);
+                messagesNull = [];
+                $.each(messages, function (index, value) {
+                  if (value.user_from = friend) {
+                    let html = '' +
+                      '<div class="row">' +
+                      '<div class="col-md-10">' +
+                      '<div class="message from-me visibility">' + value.message + '</div>' +
+                      '</div>' +
+                      '<div class="col-md-2"></div>' +
+                      '</div>';
+
+                    $('#messages-box').append(html);
+                    messagesNull.push(value.id);
+                    changeStatusMessages();
+                    setTimeout(function () {
+                      $('.message').addClass('show');
+                    }, 500);
+                  }
+                });
 
               }
             }
           });
         }, 5000);
+      }
+
+      function changeStatusMessages() {
+        if (messagesNull.length > 0) {
+          // change status message
+          action = 'status-message';
+          $.ajax({
+            url: '/api/',
+            method: 'post',
+            dataType: 'json',
+            data: {'messages': messagesNull, 'action': action},
+            success: function (data) {
+              if (data.data.result) {
+                messagesNull = [];
+              }
+            }
+          });
+        }
       }
     });
   </script>

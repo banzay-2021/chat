@@ -18,7 +18,7 @@ class Login implements Scenario
      *
      * @param Request $req HTTP request to login page.
      *
-     * @return array    Result of ligin page scenario.
+     * @return array       Result of ligin page scenario.
      */
     public function run(Request $req): array
     {
