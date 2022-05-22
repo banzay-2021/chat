@@ -23,14 +23,7 @@ class Application
         $request = new Request();
         try {
             $request->parseSuperGlobal();
-            // TODO: Perhaps here you need to separate the API and Page
-            $url = explode('/', $request->page)[0];
-
-            if($url === 'api') {
-                $page = Api::create($request->page);
-            } else {
-                $page = Page::create($request->page);
-            }
+            $page = Page::create($request->page);
             $page = $page->process($request);
             $this->initHtmlRenderer()->renderPage($page);
         } catch (\Exception $e) {

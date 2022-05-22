@@ -95,10 +95,21 @@ class Page
         if (!class_exists($scenarioName)) {
             return null;
         }
+
+//        $modelName = '\Chat\Models\\'.self::makeClassName($this->alias);
+//        if (!class_exists($scenarioName)) {
+//            return null;
+//        }
+
         /** @var Scenario $scenario */
         $scenario = new $scenarioName();
         $result = $scenario->run($req);
 
+        $alias = explode('/', $this->alias)[0];
+        if($alias === 'api') {
+            header('Content-Type: application/json; charset=utf-8');
+            exit(json_encode($result, JSON_UNESCAPED_UNICODE));
+        }
         if (isset($result['toRender'])) {
             $this->toRender = array_merge($this->toRender, $result['toRender']);
         }

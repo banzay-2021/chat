@@ -22,10 +22,6 @@ class Router
         'chat' => [],
         '404' => [],
         'api' => [],
-        'api/friends' => [
-            'scenario' => 'api',
-            'action' => 'friends'
-        ]
     ];
 
 

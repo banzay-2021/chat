@@ -26,8 +26,7 @@ class Registration implements Scenario
     {
         // TODO: Sending temporary data to the template
         return ['toRender' => [
-            'reg' => $req->page,
-            'user' => 1,
+            'page' => $req->page,
         ]];
     }
 }

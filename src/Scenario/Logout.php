@@ -22,10 +22,9 @@ class Logout implements Scenario
      */
     public function run(Request $req): array
     {
-        //echo 'Log out => run<br>';
         // TODO: Sending temporary data to the template
         return ['toRender' => [
-            'reg' => $req->page,
+            'page' => $req->page,
         ]];
     }
 }

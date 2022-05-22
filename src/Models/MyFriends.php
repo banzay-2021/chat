@@ -1,6 +1,6 @@
 <?php
 
-namespace Chat\Model;
+namespace Chat\Models;
 
 class MyFriends extends ModelBase
 {

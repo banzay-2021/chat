@@ -224,25 +224,23 @@
             'action': action
           },
           success: function (data) {
+            $('#new-message').val('');
 
+            let html = '' +
+              '<div class="row">' +
+              '<div class="col-md-2"></div>' +
+              '<div class="col-md-10">' +
+              '<div class="message from-me visibility">' + newMessage +
+              '</div>' +
+              '</div>' +
+              '</div>';
+
+            $('#messages-box').append(html);
+            setTimeout(function () {
+              $('.message').addClass('show');
+            }, 500);
           }
         });
-
-        $('#new-message').val('');
-
-        let html = '' +
-          '<div class="row">' +
-          '<div class="col-md-2"></div>' +
-          '<div class="col-md-10">' +
-          '<div class="message from-me visibility">' + newMessage +
-          '</div>' +
-          '</div>' +
-          '</div>';
-
-        $('#messages-box').append(html);
-        setTimeout(function () {
-          $('.message').addClass('show');
-        }, 500);
       });
 
       function checkNewMessages() {
@@ -256,14 +254,13 @@
             success: function (data) {
               if (data.data.messages) {
                 messages = data.data.messages;
-                console.log(friend);
                 messagesNull = [];
                 $.each(messages, function (index, value) {
                   if (value.user_from = friend) {
                     let html = '' +
                       '<div class="row">' +
                       '<div class="col-md-10">' +
-                      '<div class="message from-me visibility">' + value.message + '</div>' +
+                      '<div class="message visibility">' + value.message + '</div>' +
                       '</div>' +
                       '<div class="col-md-2"></div>' +
                       '</div>';
