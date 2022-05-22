@@ -6,11 +6,20 @@ use \Chat\Util\DataBase;
 
 abstract class ModelBase //implements \Chat\Model
 {
-    protected $db;
+    /**
+     * Database Instance.
+     *
+     * @var object
+     */
+    public $db;
+
     protected $table;
+
     private $dataResult;
 
     public function __construct($select = false) {
+        $this->db = new DataBase();
+/*
         // объект бд коннекта
         global $dbObject;
         $this->db = $dbObject;
@@ -24,6 +33,7 @@ abstract class ModelBase //implements \Chat\Model
         // обработка запроса, если нужно
         $sql = $this->_getSelect($select);
         if($sql) $this->_getResult("SELECT * FROM $this->table" . $sql);
+        */
     }
 
     // получить имя таблицы

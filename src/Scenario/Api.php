@@ -3,7 +3,8 @@
 namespace Chat\Scenario;
 
 use \Chat\Http\Request;
-use \Chat\Inject;
+use \Chat\Models\Friends;
+use \Chat\Models\Messages;
 use \Chat\Models\Users;
 use \Chat\Scenario;
 use \Chat\Util\DataBase;
@@ -13,6 +14,7 @@ use \Chat\Util\DataBase;
  */
 class Api implements Scenario
 {
+
     /**
      * Contains the data returned from the API request.
      *
@@ -28,6 +30,21 @@ class Api implements Scenario
     protected $POST;
 
     /**
+     * @var object
+     */
+    protected $Friends;
+
+    /**
+     * @var object
+     */
+    protected $Messages;
+
+    /**
+     * @var object
+     */
+    protected $Users;
+
+    /**
      * Database Instance.
      *
      * @var object
@@ -40,6 +57,9 @@ class Api implements Scenario
     public function __construct()
     {
         $this->db = new DataBase();
+        $this->Users = new Users();
+        $this->Messages = new Messages();
+        $this->Friends = new Friends();
     }
 
     /**
@@ -107,9 +127,8 @@ class Api implements Scenario
         $params = [
             'id' => $userId > 0 ? $userId : $this->POST->Int('user')
         ];
-        $sql = 'SELECT id, name, login FROM users';
-        $sql .= ' WHERE id=:id';
-        $this->data['data']['userinfo'] = $this->db->rows($sql, $params);
+
+        $this->data['data']['userinfo'] = $this->Users->getUserInfo($params);
     }
 
     /**
@@ -125,10 +144,7 @@ class Api implements Scenario
             'pass' => $this->md5Encode($this->POST->Int('pass'))
         ];
 
-        $sql = 'SELECT id, name, login FROM users';
-        $sql .= ' WHERE login=:login';
-        $sql .= ' AND pass=:pass';
-        $this->data['data']['userinfo'] = $this->db->rows($sql, $params);
+        $this->data['data']['userinfo'] = $this->Users->login($params);
     }
 
     /**
@@ -153,16 +169,9 @@ class Api implements Scenario
             'from' => $this->POST->Int('friend'),
             'to1' => $this->POST->Int('user'),
             'from1' => $this->POST->Int('friend')
-        ];;
-        $sql = 'SELECT id, user_from, user_to, message, created, status FROM messages';
-        $sql .= ' WHERE (user_to=:to';
-        $sql .= ' AND user_from=:from)';
-        $sql .= ' OR ';
-        $sql .= '(user_from=:to1';
-        $sql .= ' AND user_to=:from1)';
-        $sql .= ' ORDER BY created ASC';
-        $sql .= ' LIMIT 10';
-        $this->data['data']['messages'] = $this->db->row($sql, $params);
+        ];
+
+        $this->data['data']['messages'] = $this->Messages->getMessages($params);
     }
 
     /**
@@ -176,11 +185,8 @@ class Api implements Scenario
         $params = [
             'to' => $this->POST->Int('user')
         ];
-        $sql = 'SELECT id, user_from, user_to, message, created FROM messages';
-        $sql .= ' WHERE user_to=:to';
-        $sql .= ' AND status IS NULL';
-        $sql .= ' ORDER BY created ASC';
-        $this->data['data']['messages'] = $this->db->row($sql, $params);
+
+        $this->data['data']['messages'] = $this->Messages->checkStatus($params);
     }
 
     /**
@@ -194,11 +200,8 @@ class Api implements Scenario
         $params = [
             'id' => $this->POST->Int('user')
         ];
-        $sql = 'SELECT users.id, users.name FROM friends';
-        $sql .= ' INNER JOIN users ON friends.friend_id=users.id ';
-        $sql .= ' WHERE friends.user_id=:id';
-        $sql .= ' ORDER BY users.name';
-        $this->data['data']['friends'] = $this->db->row($sql, $params);
+
+        $this->data['data']['friends'] = $this->Friends->getFriends($params);
     }
 
     /**
@@ -206,6 +209,8 @@ class Api implements Scenario
      */
     public function addFriend()
     {
+        // TODO: Need to transfer to Model
+
         $paramsNeeded = ['friend', 'user'];
         if (!$this->checkParams($paramsNeeded)) return;
 
@@ -238,6 +243,8 @@ class Api implements Scenario
      */
     public function addMessage()
     {
+        // TODO: Need to transfer to Model
+
         $paramsNeeded = ['user', 'friend', 'message'];
         if (!$this->checkParams($paramsNeeded)) return;
 
@@ -260,6 +267,8 @@ class Api implements Scenario
      */
     public function updateStatusMessage()
     {
+        // TODO: Need to transfer to Model
+
         $paramsNeeded = ['messages'];
         if (!$this->checkParams($paramsNeeded)) return;
 
@@ -282,8 +291,10 @@ class Api implements Scenario
      */
     public function registrationUser()
     {
+        // TODO: Need to transfer to Model
+
         // "ref-user" also passed to POST but not used yet
-        $paramsNeeded = ['user', 'login', 'pass'];
+        $paramsNeeded = ['name', 'login', 'pass'];
         if (!$this->checkParams($paramsNeeded)) return;
 
         $params = [
@@ -312,10 +323,8 @@ class Api implements Scenario
         $params = [
             'login' => $this->POST->String('login')
         ];
-        $sql = 'SELECT id FROM users';
-        $sql .= ' WHERE login=:login';
 
-        return $this->db->column($sql, $params);
+        return $this->Users->checkLogin($params);
     }
 
     /**
@@ -339,10 +348,5 @@ class Api implements Scenario
     public function md5Encode($text)
     {
         return md5($text);
-    }
-
-    public function loadModel()
-    {
-
     }
 }
